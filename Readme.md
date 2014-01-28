@@ -1,0 +1,2 @@
+# rstrauss: R-package for simulating Strauss point pattern model in 2- and 3-dimensions
+Simulate the Strauss point process in 2- or 3-dimensional cube (rectangular cuboid). Implements standard algorithms: Metropolis-Hastings, birth-and-death and dominated CFTP.
