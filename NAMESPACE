@@ -1,0 +1,4 @@
+export(rstrauss)
+export(strauss_theory)
+import(Rcpp)
+useDynLib(rstrauss)
