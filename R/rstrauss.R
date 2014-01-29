@@ -14,6 +14,7 @@
 #' @param n The number of points to distribute, overrides \code{beta}
 #' @param bbox A 2 x d  matrix with 1st row giving the lower and 2nd row the higher coordinate ranges for the simulation box.
 #' @param iter Number of iterations (in MH & BD) and max. number of steps for dCFTP.
+#' @param toroidal Whether to use toroidal correction.
 #' @param verb Control verbosity
 #' @param perfect Use dCFTP simulation? Otherwise BD, unless n given which use MH.
 #' 
@@ -43,7 +44,8 @@ rstrauss <- function(beta=100,
                      range=0.1,
                      n,
                      bbox=cbind(c(0,1), c(0,1), c(0,1)), 
-                     iter = 1e3,
+                     iter = 1e4,
+                     toroidal=FALSE,
                      verb=FALSE,
                      perfect=FALSE) {
   d <- ncol(bbox)
@@ -51,13 +53,14 @@ rstrauss <- function(beta=100,
   # choose algorithm
   # conditional MH simulation
   if(!missing(n)) 
-    xyz <- rstrauss_MH(d, n, gamma, range, win, iter, verb)
+    xyz <- rstrauss_MH(n, gamma, range, win, toroidal, iter, verb)
   # else we have a non-fixed number of points
   else if(perfect) 
-    xyz <- rstrauss_DCFTP(d, beta, gamma, range, win, T0=2, dbg=verb, maxtry=iter)
+    xyz <- rstrauss_DCFTP(beta, gamma, range, win, toroidal, T0=2, dbg=verb, maxtry=iter)
   else 
-    xyz <- rstrauss_BD(d, beta, gamma, range, win, iter, verb)
+    xyz <- rstrauss_BD(beta, gamma, range, win, toroidal, iter, verb)  
   # 
+  
   xyz <- do.call(cbind, xyz)
   list(x=xyz, bbox=bbox)
 }

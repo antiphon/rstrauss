@@ -1,75 +1,86 @@
 #include <Rcpp.h>
+#include <vector>
+
 #include "potentials.h"
 #include "helpers.h"
-#include <vector>
+#include "Pp.h"
+
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-List rstrauss_BD(int dim, double beta, double gamma, double R, NumericVector win, 
-                 int iter, int dbg) {
+List rstrauss_BD(double beta, double gamma, double R, NumericVector win, 
+                 int toroidal, int iter, int dbg) {
   RNGScope scope;
-  int acc = 0;
   double alpha, Delta;
   double xnew, ynew, znew;
   double xold, yold, zold;
   double pdeath = 0.5 ; // constant
-  int j;
+  int i,j;
+  
+  int dim = 2;
+  if(win.size()>4) dim = 3;
   //initial pattern
-  std::vector<double> x, y, z;
-  x.push_back( runif(1, win[0], win[1])(0) );
-  y.push_back( runif(1, win[2], win[3])(0) );
-  if(dim==3) z.push_back( runif(1, win[4], win[5])(0) );
-  int n = 1;
+  std::vector<double> window;
+  for(j=0; j < win.size(); j++) window.push_back(win(j));
+  Pp X(window, toroidal);
+  
+  xnew = runif(1, win[0], win[1])(0) ;
+  ynew = runif(1, win[2], win[3])(0) ;
+  if(dim==3)  znew = runif(1, win[4], win[5])(0) ;
+  
+  int new_id = X.push_back(xnew, ynew, znew);
   
   // volume of the window
   double Volume = (win[1]-win[0])*(win[3]-win[2]);
   if(dim==3) Volume *= win[5]-win[4];
   //
+  int n=X.size();
   // main loop
-  for(int i=0; i < iter; i++) {
+  for(i=0; i < iter; i++) {
+     n = X.size();
     // birth or death
-    if(runif(1)(0) < pdeath) { // death
-      //printf("killing\n");
+    if(runif(1)(0) < pdeath) { // death?
+//      printf("killing\n");
       j = sample_j(n);
       //
-      Delta = potential(x, y, z, gamma, R, j, n, dim);
+      Delta = potential(X, gamma, R, j);
       alpha = (n/Volume)/beta * Delta;
-      if(runif(1)(0) < alpha) { // occurs
-        //printf("killed\n");
-        x.erase(x.begin()+j);
-        y.erase(y.begin()+j);
-        if(dim==3) z.erase(z.begin()+j);
-        n -= 1;
+      if(runif(1)(0) < alpha) { // death occurs
+//        printf("killed\n");
+        X.remove(j);
       }
     }
     else{ // birth, oh joy
-      //printf("living\n");
+//      printf("not killing\n");
       xnew = runif(1, win[0], win[1])(0);
       ynew = runif(1, win[2], win[3])(0);
       if(dim==3) znew = runif(1, win[4], win[5])(0);
-      x.push_back(xnew);
-      y.push_back(ynew);
-      if(dim==3) z.push_back(znew);
-      j = x.size()-1;
-      Delta = potential(x, y, z, gamma, R, j, n+1, dim);
-      alpha = (Volume/(n+1.0))*beta * Delta;
+      new_id = X.push_back(xnew, ynew, znew);
+      j = n;
+      Delta = potential(X, gamma, R, j);
+      alpha = (Volume/(n+1.0)) * beta * Delta;
       if(runif(1)(0) < alpha) { //occurs
-        //printf("birth\n");
-        n += 1;
+//        printf("born\n");
       }
-      else { 
-        x.pop_back();
-        y.pop_back();
-        if(dim==3) z.pop_back();
+      else {
+        X.pop_back();
       }
     }
     
     
-    if(dbg) printf("\r %i/%i [n=%i]", i+1, iter, n);
+    if(dbg) printf("\r %i/%i [n=%i]", i+1, iter, X.size());
   }
   if(dbg) printf("\n");
-  // and we are done
-  List xyz =   List::create(wrap(x), wrap(y), wrap(z));
+  // and we are done. Compile results:
+  NumericVector x(X.size()), y(X.size()), z;
+  if(dim==3) z = rep(0, X.size());
+  for(i=0; X.size()>i; i++) {
+    x(i)=X.points.at(i).getX(); 
+    y(i)=X.points.at(i).getY(); 
+    if(dim==3) z(i)= X.points.at(i).getZ(); 
+  }
+  List xyz =   List::create(x, y, z);
+  //
   return(xyz);
 }
 

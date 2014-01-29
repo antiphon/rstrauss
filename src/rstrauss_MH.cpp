@@ -1,37 +1,54 @@
 #include <Rcpp.h>
+#include <vector>
 #include "potentials.h"
+#include "helpers.h"
+#include "Pp.h"
+
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-List rstrauss_MH(int dim, int n, double gamma, double R, NumericVector win, int iter, int dbg) {
+List rstrauss_MH(int n, double gamma, double R, NumericVector win, 
+                 int toroidal, int iter, int dbg) {
   RNGScope scope;
+
+  int i, j;
+  
+  int dim = 2;
+  if(win.size()>4) dim = 3;
+  
   //initial pattern
-  NumericVector x, y, z;
-  x  = runif(n, win[0], win[1]);
-  y  = runif(n, win[2], win[3]);
-  if(dim==3) z = runif(n, win[2], win[3]);
+  std::vector<double> window;
+  for(j=0; j < win.size(); j++) window.push_back(win(j));
+  Pp X(window, toroidal);
+  
+  double xnew, ynew, znew;
+  for(i=0; i < n; i++){
+    xnew = runif(1, win[0], win[1])(0) ;
+    ynew = runif(1, win[2], win[3])(0) ;
+    if(dim==3)  znew = runif(1, win[4], win[5])(0) ;
+    int new_id = X.push_back(xnew, ynew, znew);
+  }
+  
   // then we loop
   int acc = 0;
   double E_old, E_new;
-  double xnew, ynew, znew;
   double xold, yold, zold;
   double alpha;
-  int j;
-  for(int i=0; i < iter; i++) {
+  
+  for(i=0; i < iter; i++) {
+    j = sample_j(n); //i%n;
+    E_old = potential(X, gamma, R, j);
+    
     xnew = runif(1, win[0], win[1])(0);
     ynew = runif(1, win[2], win[3])(0);
-    j = i%n;
-    E_old = potential(x, y, z, gamma, R, j, n, dim);
-    xold = x(j);
-    x(j) = xnew;
-    yold = y(j);
-    y(j) = ynew;
+    xold = X.getX(&j);
+    yold = X.getY(&j);
     if(dim==3) {
-      zold = z(j);
       znew = runif(1, win[4], win[5])(0);
-      z(j) = znew;
+      zold = X.getZ(&j);
     }
-    E_new = potential(x, y, z, gamma, R, j, n, dim);
+    X.move(&j, xnew, ynew, znew);
+    E_new = potential(X, gamma, R, j);
     if(E_old == 0 & E_new > 0) {alpha = 1;}
     else if(E_new == 0) { alpha = 0;}
     else {alpha = E_new/E_old; }
@@ -39,15 +56,20 @@ List rstrauss_MH(int dim, int n, double gamma, double R, NumericVector win, int 
       acc += 1;
     }
     else {
-      x(j) = xold;
-      y(j) = yold;
-      if(dim==3) z(j) = zold;
+      X.move(&j, xold, yold, zold);
     }
     if(dbg) printf("\r %i/%i", i+1, iter);
   }
   if(dbg) printf("\n");
-  // and we are done
-  List  xyz =   List::create(x, y, z);
+  // and we are done. Compile results:
+  NumericVector x(X.size()), y(X.size()), z;
+  if(dim==3) z = rep(0, X.size());
+  for(i=0; X.size()>i; i++) {
+    x(i)=X.points.at(i).getX(); 
+    y(i)=X.points.at(i).getY(); 
+    if(dim==3) z(i)= X.points.at(i).getZ(); 
+  }
+  List xyz =   List::create(x, y, z);
   return(xyz);
 }
 

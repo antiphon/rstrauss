@@ -3,8 +3,8 @@
 \title{Simulate Strauss process in 2- or 3-dimensional box}
 \usage{
   rstrauss(beta = 100, gamma = 1, range = 0.1, n,
-    bbox = cbind(c(0, 1), c(0, 1), c(0, 1)), iter = 1000,
-    verb = FALSE, perfect = FALSE)
+    bbox = cbind(c(0, 1), c(0, 1), c(0, 1)), iter = 10000,
+    toroidal = FALSE, verb = FALSE, perfect = FALSE)
 }
 \arguments{
   \item{beta}{The beta parameter, controls (but does not
@@ -24,6 +24,8 @@
 
   \item{iter}{Number of iterations (in MH & BD) and max.
   number of steps for dCFTP.}
+
+  \item{toroidal}{Whether to use toroidal correction.}
 
   \item{verb}{Control verbosity}
 

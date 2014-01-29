@@ -5,7 +5,9 @@ Version: 1.0
 Date: 2014-01-21
 Author: Tuomas Rajala
 Maintainer: Tuomas Rajala <tuomas.rajala@iki.fi>
-Description: Simulate the Strauss point process in 2- or 3-dimensional cube (rectangular cuboid). Implements standard algorithms: Metropolis-Hastings, birth-and-death and dominated CFTP.
+Description: Simulate the Strauss point process in 2- or 3-dimensional cube
+    (rectangular cuboid). Implements standard algorithms: Metropolis-Hastings,
+    birth-and-death and dominated CFTP.
 License: GPL
 Depends:
     Rcpp
