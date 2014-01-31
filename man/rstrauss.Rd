@@ -4,7 +4,8 @@
 \usage{
   rstrauss(beta = 100, gamma = 1, range = 0.1, n,
     bbox = cbind(c(0, 1), c(0, 1), c(0, 1)), iter = 10000,
-    toroidal = FALSE, verb = FALSE, perfect = FALSE)
+    toroidal = FALSE, verb = FALSE, perfect = FALSE,
+    blocking = FALSE)
 }
 \arguments{
   \item{beta}{The beta parameter, controls (but does not
@@ -31,6 +32,9 @@
 
   \item{perfect}{Use dCFTP simulation? Otherwise BD, unless
   n given which use MH.}
+
+  \item{blocking}{MH: Use grid- book keeping to look for
+  neighbours, worth it for large patterns.}
 }
 \value{
   A list with \item{x}{2- or 3-dimensional table with the

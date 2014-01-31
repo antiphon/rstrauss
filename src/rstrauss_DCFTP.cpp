@@ -10,7 +10,7 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 List rstrauss_DCFTP(double beta, double gamma, double R, 
                     NumericVector win, 
-                    int toroidal,int T0, int dbg, int maxtry) {
+                    int toroidal,int T0, int dbg, int maxtry, double blocking) {
   RNGScope scope;
   int acc = 0;
   double alpha, alpha2, Delta;
@@ -34,6 +34,9 @@ List rstrauss_DCFTP(double beta, double gamma, double R,
   std::vector<int> which_id;
   Pplite xyz(window, toroidal);
   std::vector<int> id;
+  
+  // TODO if(blocking > 0) xyz.start_blocking(blocking);
+  
   //initial pattern D = D_0
   int nD = rpois(1, beta*Volume)(0);
   

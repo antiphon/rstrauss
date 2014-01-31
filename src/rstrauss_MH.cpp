@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 List rstrauss_MH(int n, double gamma, double R, NumericVector win, 
-                 int toroidal, int iter, int dbg) {
+                 int toroidal, int iter, int dbg, double blocking) {
   RNGScope scope;
 
   int i, j;
@@ -20,6 +20,9 @@ List rstrauss_MH(int n, double gamma, double R, NumericVector win,
   std::vector<double> window;
   for(j=0; j < win.size(); j++) window.push_back(win(j));
   Pp X(window, toroidal);
+  
+  if(blocking > 0) X.start_blocking(blocking);
+  
   
   double xnew, ynew, znew;
   for(i=0; i < n; i++){
@@ -37,6 +40,7 @@ List rstrauss_MH(int n, double gamma, double R, NumericVector win,
   
   for(i=0; i < iter; i++) {
     j = sample_j(n); //i%n;
+//    printf("potential\n");
     E_old = potential(X, gamma, R, j);
     
     xnew = runif(1, win[0], win[1])(0);
@@ -47,7 +51,9 @@ List rstrauss_MH(int n, double gamma, double R, NumericVector win,
       znew = runif(1, win[4], win[5])(0);
       zold = X.getZ(&j);
     }
-    X.move(&j, xnew, ynew, znew);
+//    printf("moving\n");
+    X.move_cache(&j, xnew, ynew, znew);
+//    printf("potential\n");
     E_new = potential(X, gamma, R, j);
     if(E_old == 0 & E_new > 0) {alpha = 1;}
     else if(E_new == 0) { alpha = 0;}
@@ -56,7 +62,9 @@ List rstrauss_MH(int n, double gamma, double R, NumericVector win,
       acc += 1;
     }
     else {
-      X.move(&j, xold, yold, zold);
+//      printf("moving back\n");
+//      X.move(&j, xold, yold, zold);
+      X.move_back();
     }
     if(dbg) printf("\r %i/%i", i+1, iter);
   }

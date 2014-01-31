@@ -9,7 +9,7 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 List rstrauss_BD(double beta, double gamma, double R, NumericVector win, 
-                 int toroidal, int iter, int dbg) {
+                 int toroidal, int iter, int dbg, double blocking) {
   RNGScope scope;
   double alpha, Delta;
   double xnew, ynew, znew;
@@ -23,6 +23,8 @@ List rstrauss_BD(double beta, double gamma, double R, NumericVector win,
   std::vector<double> window;
   for(j=0; j < win.size(); j++) window.push_back(win(j));
   Pp X(window, toroidal);
+  
+  if(blocking > 0) X.start_blocking(blocking);
   
   xnew = runif(1, win[0], win[1])(0) ;
   ynew = runif(1, win[2], win[3])(0) ;
@@ -47,7 +49,7 @@ List rstrauss_BD(double beta, double gamma, double R, NumericVector win,
       alpha = (n/Volume)/beta * Delta;
       if(runif(1)(0) < alpha) { // death occurs
 //        printf("killed\n");
-        X.remove(j);
+        X.remove(&j);
       }
     }
     else{ // birth, oh joy

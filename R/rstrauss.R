@@ -17,7 +17,7 @@
 #' @param toroidal Whether to use toroidal correction.
 #' @param verb Control verbosity
 #' @param perfect Use dCFTP simulation? Otherwise BD, unless n given which use MH.
-#' 
+#' @param blocking MH: Use grid- book keeping to look for neighbours, worth it for large patterns.
 #' @details
 #' The density of a realisation x of Strauss(beta, gamma, r), where r is the range, is
 #' \deqn{f(x)= alfa beta^n(x) gamma^s(x;r)}
@@ -47,20 +47,22 @@ rstrauss <- function(beta=100,
                      iter = 1e4,
                      toroidal=FALSE,
                      verb=FALSE,
-                     perfect=FALSE) {
+                     perfect=FALSE,
+                     blocking=FALSE) {
   d <- ncol(bbox)
   win <- unlist(bbox)
+  if(blocking & perfect) warning("Blocking not implemented for dCFTP.")
+  if(blocking & !perfect & missing(n)) warning("Blocking for BD is extremely inefficient.")
   # choose algorithm
   # conditional MH simulation
   if(!missing(n)) 
-    xyz <- rstrauss_MH(n, gamma, range, win, toroidal, iter, verb)
+    xyz <- rstrauss_MH(n, gamma, range, win, toroidal, iter, verb, as.numeric(blocking))
   # else we have a non-fixed number of points
   else if(perfect) 
-    xyz <- rstrauss_DCFTP(beta, gamma, range, win, toroidal, T0=2, dbg=verb, maxtry=iter)
+    xyz <- rstrauss_DCFTP(beta, gamma, range, win, toroidal, T0=2, dbg=verb, maxtry=iter, blocking)
   else 
-    xyz <- rstrauss_BD(beta, gamma, range, win, toroidal, iter, verb)  
+    xyz <- rstrauss_BD(beta, gamma, range, win, toroidal, iter, verb, as.numeric(blocking))
   # 
-  
   xyz <- do.call(cbind, xyz)
   list(x=xyz, bbox=bbox)
 }

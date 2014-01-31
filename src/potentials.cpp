@@ -38,10 +38,26 @@
 double potential(Pp X, double gamma, double R, int i) {
   int j;
   double S=0, R2 = R*R, dij;
-  for(j=0; j < X.size(); j++) {
-  if(i!=j) {
-    dij = X.getDist(&i, &j);
-      if(dij < R) S += 1;
+  
+  return pow(gamma, X.Rneighbours(i, R));
+  
+  if(X.is_blocked()){
+    //printf("* getting neighbours\n");
+    std::vector<int> neighs = X.block_neighbours(&i);
+    //printf("* computing S\n");
+    for(j=0; j < neighs.size(); j++) {
+      if(neighs.at(j) != i) {
+        dij = X.getDist(&i, &neighs.at(j));
+          if(dij < R) S += 1;
+      }
+    }
+  }
+  else{
+    for(j=0; j < X.size(); j++) {
+      if(j != i) {
+        dij = X.getDist(&i, &j);
+          if(dij < R) S += 1;
+      }
     }
   }
   return pow(gamma, S);
@@ -57,6 +73,7 @@ double potential(Pplite X, std::vector<int> these, double gamma, double R, int i
         if(dij < R) S += 1;
       }
   }
+  
   return pow(gamma, S);
 }
 

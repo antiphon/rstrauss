@@ -6,8 +6,8 @@
 using namespace Rcpp;
 
 // rstrauss_BD
-List rstrauss_BD(double beta, double gamma, double R, NumericVector win, int toroidal, int iter, int dbg);
-RcppExport SEXP rstrauss_rstrauss_BD(SEXP betaSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP) {
+List rstrauss_BD(double beta, double gamma, double R, NumericVector win, int toroidal, int iter, int dbg, double blocking);
+RcppExport SEXP rstrauss_rstrauss_BD(SEXP betaSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -19,7 +19,8 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP );
         Rcpp::traits::input_parameter< int >::type iter(iterSEXP );
         Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP );
-        List __result = rstrauss_BD(beta, gamma, R, win, toroidal, iter, dbg);
+        Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP );
+        List __result = rstrauss_BD(beta, gamma, R, win, toroidal, iter, dbg, blocking);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
@@ -27,8 +28,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // rstrauss_DCFTP
-List rstrauss_DCFTP(double beta, double gamma, double R, NumericVector win, int toroidal, int T0, int dbg, int maxtry);
-RcppExport SEXP rstrauss_rstrauss_DCFTP(SEXP betaSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP T0SEXP, SEXP dbgSEXP, SEXP maxtrySEXP) {
+List rstrauss_DCFTP(double beta, double gamma, double R, NumericVector win, int toroidal, int T0, int dbg, int maxtry, double blocking);
+RcppExport SEXP rstrauss_rstrauss_DCFTP(SEXP betaSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP T0SEXP, SEXP dbgSEXP, SEXP maxtrySEXP, SEXP blockingSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -41,7 +42,8 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< int >::type T0(T0SEXP );
         Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP );
         Rcpp::traits::input_parameter< int >::type maxtry(maxtrySEXP );
-        List __result = rstrauss_DCFTP(beta, gamma, R, win, toroidal, T0, dbg, maxtry);
+        Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP );
+        List __result = rstrauss_DCFTP(beta, gamma, R, win, toroidal, T0, dbg, maxtry, blocking);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
@@ -49,8 +51,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // rstrauss_MH
-List rstrauss_MH(int n, double gamma, double R, NumericVector win, int toroidal, int iter, int dbg);
-RcppExport SEXP rstrauss_rstrauss_MH(SEXP nSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP) {
+List rstrauss_MH(int n, double gamma, double R, NumericVector win, int toroidal, int iter, int dbg, double blocking);
+RcppExport SEXP rstrauss_rstrauss_MH(SEXP nSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -62,7 +64,8 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP );
         Rcpp::traits::input_parameter< int >::type iter(iterSEXP );
         Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP );
-        List __result = rstrauss_MH(n, gamma, R, win, toroidal, iter, dbg);
+        Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP );
+        List __result = rstrauss_MH(n, gamma, R, win, toroidal, iter, dbg, blocking);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
