@@ -16,6 +16,8 @@ List rstrauss_MH(int n, double gamma, double R, NumericVector win,
   int dim = 2;
   if(win.size()>4) dim = 3;
   
+  
+  
   //initial pattern
   std::vector<double> window;
   for(j=0; j < win.size(); j++) window.push_back(win(j));
@@ -68,11 +70,12 @@ List rstrauss_MH(int n, double gamma, double R, NumericVector win,
     }
     if(dbg) printf("\r %i/%i", i+1, iter);
   }
-  if(dbg) printf("\n");
+  if(dbg) printf(" MH done.\n");
+  
   // and we are done. Compile results:
   NumericVector x(X.size()), y(X.size()), z;
   if(dim==3) z = rep(0, X.size());
-  for(i=0; X.size()>i; i++) {
+  for(i=0; i < X.size(); i++) {
     x(i)=X.points.at(i).getX(); 
     y(i)=X.points.at(i).getY(); 
     if(dim==3) z(i)= X.points.at(i).getZ(); 

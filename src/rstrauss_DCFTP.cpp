@@ -139,11 +139,14 @@ List rstrauss_DCFTP(double beta, double gamma, double R,
   if(dbg) printf("\n");
   // and we are done. build the result:
   std::vector<double> rx(L.size()), ry(L.size()), rz;
+  rz.clear();
+  
   for(i=0; i < L.size(); i++) {
     j = L.at(i);
     rx.at(i) = xyz.getX(&j);
     ry.at(i) = xyz.getY(&j);
   }
+  
   if(dim==3) {
     rz.resize(L.size());
     for(i=0; i < L.size(); i++) {
@@ -151,7 +154,7 @@ List rstrauss_DCFTP(double beta, double gamma, double R,
       rz.at(i)= xyz.getZ(&j);
     }
   }
-//  std::vector<double> rx(2), ry(2), rz;
+  
   List res =   List::create(wrap(rx), wrap(ry), wrap(rz));
   return(res);
 }

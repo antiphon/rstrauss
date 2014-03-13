@@ -171,7 +171,7 @@ void Pp::start_blocking(double max_range) {
     nblocks *= nz;
   }
   blockmembers.resize(nblocks);
-  // printf("Blocking ready(%i, %i)\n", blockmembers.size(), blockmembers.at(0).size());
+  //printf("Blocking ready(%i, %i)\n", blockmembers.size(), blockmembers.at(0).size());
   use_blocking = true;
 };
 /********************************************************************************************/
@@ -181,9 +181,9 @@ std::vector<int> Pp::get_block_vec(int *i) {
   // set the block id of point i.
   // figure out which block is the i in:
   // in x-dimension:
-  ijk.at(0) = (int) ceil(blocks.at(0)*points.at(*i).getX()/(window.at(1)-window.at(0)))-1;
-  ijk.at(1) = (int) ceil(blocks.at(1)*points.at(*i).getY()/(window.at(3)-window.at(2)))-1;
-  if(dimension==3) ijk.at(2) = (int) ceil(blocks.at(2)*points.at(*i).getZ()/(window.at(5)-window.at(4)))-1;
+  ijk.at(0) = (int) ceil( blocks.at(0) * ( points.at(*i).getX() - window.at(0) )/(window.at(1)-window.at(0)) ) - 1;
+  ijk.at(1) = (int) ceil( blocks.at(1) * ( points.at(*i).getY() - window.at(2) ) / (window.at(3)-window.at(2)) ) - 1;
+  if(dimension==3) ijk.at(2) = (int) ceil( blocks.at(2) * ( points.at(*i).getZ() - window.at(4) )/ ( window.at(5)-window.at(4) ) ) - 1;
   return ijk;
 }
 /********************************************************************************************/
@@ -227,7 +227,7 @@ void Pp::set_block(int *i) {
   points.at(*i).setId(&k);
   // book keeping
   blockmembers.at(k).push_back(*i);
-  //printf("p: %i -> b: %i/%i\n ", *i, k, (int) blockmembers.at(k).size());
+//  printf("p: %i -> b: %i/%i\n ", *i, k, (int) blockmembers.at(k).size());
 }
 
 /********************************************************************************************/

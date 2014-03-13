@@ -75,12 +75,15 @@ List rstrauss_BD(double beta, double gamma, double R, NumericVector win,
   if(dbg) printf("\n");
   // and we are done. Compile results:
   NumericVector x(X.size()), y(X.size()), z;
+  
   if(dim==3) z = rep(0, X.size());
+  
   for(i=0; X.size()>i; i++) {
     x(i)=X.points.at(i).getX(); 
     y(i)=X.points.at(i).getY(); 
     if(dim==3) z(i)= X.points.at(i).getZ(); 
   }
+  
   List xyz =   List::create(x, y, z);
   //
   return(xyz);
