@@ -14,7 +14,7 @@ List rstrauss_DCFTP(double beta, double gamma, double R,
   RNGScope scope;
   int acc = 0;
   double alpha, alpha2, Delta;
-  double xnew, ynew, znew;
+  double xnew, ynew, znew=0;
   double pdeath = 0.5 ; // constant
   int i, j, n=2;
   
@@ -43,8 +43,11 @@ List rstrauss_DCFTP(double beta, double gamma, double R,
   for(i=0; i < nD; i++) {
     xnew = runif(1, win[0], win[1])(0);
     ynew = runif(1, win[2], win[3])(0);
-    if(dim==3) znew = runif(1, win[4], win[5])(0);
-    xyz.push_back(xnew, ynew, znew);
+    if(dim==3) {
+      znew = runif(1, win[4], win[5])(0);
+      xyz.push_back(xnew, ynew, znew);
+    }
+    else xyz.push_back(xnew, ynew);
     D.push_back(i);
   }
   
@@ -70,8 +73,11 @@ List rstrauss_DCFTP(double beta, double gamma, double R,
       else { // Dominating process backwards birth
         xnew = runif(1, win[0], win[1])(0);
         ynew = runif(1, win[2], win[3])(0);
-        if(dim==3) znew=runif(1, win[4], win[5])(0);
-        xyz.push_back(xnew, ynew, znew);
+        if(dim==3) {
+          znew=runif(1, win[4], win[5])(0);
+          xyz.push_back(xnew, ynew, znew);
+        }
+        else xyz.push_back(xnew, ynew);
         j = xyz.size()-1;
         which_id.push_back(j);
         D.push_back(j);

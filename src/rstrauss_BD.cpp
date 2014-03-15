@@ -12,7 +12,7 @@ List rstrauss_BD(double beta, double gamma, double R, NumericVector win,
                  int toroidal, int iter, int dbg, double blocking) {
   RNGScope scope;
   double alpha, Delta;
-  double xnew, ynew, znew;
+  double xnew, ynew, znew=0;
   double xold, yold, zold;
   double pdeath = 0.5 ; // constant
   int i,j;
@@ -56,8 +56,11 @@ List rstrauss_BD(double beta, double gamma, double R, NumericVector win,
 //      printf("not killing\n");
       xnew = runif(1, win[0], win[1])(0);
       ynew = runif(1, win[2], win[3])(0);
-      if(dim==3) znew = runif(1, win[4], win[5])(0);
-      new_id = X.push_back(xnew, ynew, znew);
+      if(dim==3) {
+        znew = runif(1, win[4], win[5])(0);
+        new_id = X.push_back(xnew, ynew, znew);
+      }
+      else new_id = X.push_back(xnew, ynew);
       j = n;
       Delta = potential(X, gamma, R, j);
       alpha = (Volume/(n+1.0)) * beta * Delta;
@@ -74,7 +77,7 @@ List rstrauss_BD(double beta, double gamma, double R, NumericVector win,
   }
   if(dbg) printf("\n");
   // and we are done. Compile results:
-  NumericVector x(X.size()), y(X.size()), z;
+  NumericVector x(X.size()), y(X.size()), z(0);
   
   if(dim==3) z = rep(0, X.size());
   
