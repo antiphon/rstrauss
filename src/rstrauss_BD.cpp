@@ -10,6 +10,7 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 List rstrauss_BD(double beta, double gamma, double R, NumericVector win, 
                  int toroidal, int iter, int dbg, double blocking) {
+  
   RNGScope scope;
   double alpha, Delta;
   double xnew, ynew, znew=0;

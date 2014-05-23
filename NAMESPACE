@@ -1,4 +1,7 @@
+export(approximate_strauss_constant_OT)
+export(dstrauss)
 export(rstrauss)
 export(strauss_theory)
 import(Rcpp)
+import(cutgeom)
 useDynLib(rstrauss)

@@ -1,0 +1,10 @@
+\name{approximate_strauss_constant_OT}
+\alias{approximate_strauss_constant_OT}
+\title{approximate Strauss constant using Ogata&Tanemura approx.}
+\usage{
+approximate_strauss_constant_OT(beta, gamma, range, winV, dim, Nmax = 10000)
+}
+\description{
+approximate Strauss constant using Ogata&Tanemura approx.
+}
+

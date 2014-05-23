@@ -10,9 +10,6 @@ Description: Simulate the Strauss point process in 2- or 3-dimensional cube
     birth-and-death and dominated CFTP.
 License: GPL
 Depends:
-    Rcpp
+    Rcpp,
+    cutgeom
 LinkingTo: Rcpp
-Collate:
-    'RcppExports.R'
-    'rstrauss.R'
-    'theory.R'
