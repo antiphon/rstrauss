@@ -2,7 +2,7 @@
 \alias{dstrauss}
 \title{density of a strauss process}
 \usage{
-dstrauss(x, beta, gamma, range, method = "OT")
+dstrauss(x, beta, gamma, range, method = "OT", ...)
 }
 \arguments{
   \item{x}{list with x: coordinate matrix (col-wise), bbox:
@@ -14,10 +14,12 @@ dstrauss(x, beta, gamma, range, method = "OT")
 
   \item{range}{interaction range}
 
-  \item{method}{how to approximate.
+  \item{method}{how to approximate the constant.}
 
-  Currently only method="OT" for Ogata&Tanemura 1981 is
-  available, using numerical summation.}
+  \item{...}{passed to constant approximator.
+
+  See \code{\link{approx_strauss_constant}} for the
+  methods}
 }
 \description{
 Now only for cuboidal window

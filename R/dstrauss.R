@@ -6,31 +6,21 @@
 #' @param beta beta parameter
 #' @param gamma gamma parameter
 #' @param range interaction range
-#' @param method how to approximate.
+#' @param method how to approximate the constant.
+#' @param ... passed to constant approximator.
 #' 
-#' Currently only method="OT" for Ogata&Tanemura 1981 is available, using numerical summation. 
+#' See \code{\link{approx_strauss_constant}} for the methods
 #' 
 #' @import cutgeom
 #' @export
 
-dstrauss <- function(x, beta, gamma, range, method="OT") {
-  pairs <- sum( sapply(geom(y$x, r=range), length)  )/2
+dstrauss <- function(x, beta, gamma, range, method="OT", ...) {
+  pairs <- sum( sapply(geom(x$x, r=range), length)  )/2
+  winV <- prod(apply(x$bbox, 2, diff))
+  dim <- ncol(x$bbox)
   #' the constant:
-  Z <- approximate_strauss_constant_OT(beta, gamma, current)
+  Z <- approximate_strauss_constant_OT(beta, gamma, range, bbox=x$bbox, method=method, ...)
   #'
-  beta^sum(current$z) * gamma^pairs / Z
+  beta^nrow(x$x) * gamma^pairs / Z
 }
-
-
-#' approximate Strauss constant using Ogata&Tanemura approx.
-#' 
-#' @export 
-
-approximate_strauss_constant_OT <- function(beta, gamma, range, winV, dim, Nmax=10000){
-  N <- 1:Nmax
-  a <- pi * (1-gamma) * (if(dim==2) (range^2) else ((4/3)*range^3))
-  sum( winVol^N * (1-a/winVol)^(N*(N-1)/2) )
-}
-
-
 
