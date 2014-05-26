@@ -23,7 +23,6 @@ approximate_strauss_constant_PS <- function(beta, gamma, range, bbox, nsim=10, s
     #sum(sapply(G[ok], length))/2 # number of pairs
     sum(sapply(G, length))/2 # number of pairs
   }
-  
   #' path integral grid
   ggrid <- seq(gamma, 1, length=steps)
   dg <- diff(ggrid[1:2])
@@ -44,6 +43,3 @@ approximate_strauss_constant_PS <- function(beta, gamma, range, bbox, nsim=10, s
   #' then back to Z, log
   beta - A
 }
-
-
-
