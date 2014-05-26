@@ -14,6 +14,7 @@ approximate_strauss_constant_PS <- function(beta, gamma, range, bbox, nsim=10, s
   #'helpers: Simulate a pattern given gamma
   rst <- function(gam) rstrauss(beta=beta, gamma=gam, range=range, bbox=bbox, ...)
   #'
+<<<<<<< HEAD
   #' TODO: fix the border correction
   #' Calcuate one Sr, use reduced window border correction
   Sr <- function(x) {
@@ -22,11 +23,23 @@ approximate_strauss_constant_PS <- function(beta, gamma, range, bbox, nsim=10, s
 #     print(sum(ok)/length(ok))
     #sum(sapply(G[ok], length))/2 # number of pairs
     sum(sapply(G, length))/2 # number of pairs
+=======
+  #' Calcuate one Sr, use reduced window border correction
+  Sr <- function(x) {
+    G <- geom(x$x, r=range)
+    ok <- bbox_distance(x$x, bbox) > range # exclude too close to border
+    #print(sum(ok)/length(ok))
+    sum(sapply(G[ok], length))/2 # number of pairs
+>>>>>>> 6743fafc3491e8da0bb06735996edbbe3038004f
   }
   
   #' path integral grid
   ggrid <- seq(gamma, 1, length=steps)
+<<<<<<< HEAD
   dg <- diff(ggrid[1:2])
+=======
+  dg <- (1-gamma)/steps
+>>>>>>> 6743fafc3491e8da0bb06735996edbbe3038004f
   #' The expectations
   E <- NULL
   dummy <- as.list(1:nsim)
@@ -40,6 +53,7 @@ approximate_strauss_constant_PS <- function(beta, gamma, range, bbox, nsim=10, s
   }
   #' then approximate the integral
   bw <- 2:(steps-1) # intermediate values on the path
+<<<<<<< HEAD
   A <- dg * ( E[1]/(2*gamma) + E[steps]/2 + sum(E[bw]/ggrid[bw]) )
   #' then back to Z, log
   beta - A
@@ -47,3 +61,10 @@ approximate_strauss_constant_PS <- function(beta, gamma, range, bbox, nsim=10, s
 
 
 
+=======
+  A <- dg*(E[1]/(2*gamma) + E[steps]/2 + sum(E[bw]/ggrid[bw]))
+  #' then back to Z
+  beta - A
+}
+
+>>>>>>> 6743fafc3491e8da0bb06735996edbbe3038004f
