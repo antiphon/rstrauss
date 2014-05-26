@@ -8,9 +8,8 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 List rstrauss_MH(int n, double gamma, double R, NumericVector win, 
-                 int toroidal, int iter, int dbg, double blocking) {
+                 int toroidal, int iter, int dbg, double blocking, NumericMatrix start) {
   RNGScope scope;
-
   int i, j;
   
   int dim = 2;
@@ -25,14 +24,25 @@ List rstrauss_MH(int n, double gamma, double R, NumericVector win,
   
   if(blocking > 0) X.start_blocking(blocking);
   
-  
   double xnew, ynew, znew;
+  
+//  if(start_is_empty){ 
+//    printf("Got null start.");
+//    for(i=0; i < n; i++){
+//      xnew = runif(1, win[0], win[1])(0) ;
+//      ynew = runif(1, win[2], win[3])(0) ;
+//      if(dim==3)  znew = runif(1, win[4], win[5])(0) ;
+//      int new_id = X.push_back(xnew, ynew, znew);
+//    }
+//  }
+//  else{
   for(i=0; i < n; i++){
-    xnew = runif(1, win[0], win[1])(0) ;
-    ynew = runif(1, win[2], win[3])(0) ;
-    if(dim==3)  znew = runif(1, win[4], win[5])(0) ;
+    xnew = start(i,0);
+    ynew = start(i,1);
+    if(dim==3)  znew = start(i,2);
     int new_id = X.push_back(xnew, ynew, znew);
   }
+//  }
   
   // then we loop
   int acc = 0;

@@ -18,6 +18,8 @@
 #' @param verb Control verbosity
 #' @param perfect Use dCFTP simulation? Otherwise BD, unless n given which use MH.
 #' @param blocking MH: Use grid- book keeping to look for neighbours, worth it for large patterns.
+#' @param start a 2/3d column matrix of starting locations,i.e. Initial configuration. ONLY FOR MH.
+#' 
 #' @details
 #' The density of a realisation x of Strauss(beta, gamma, r), where r is the range, is
 #' \deqn{f(x)= alfa beta^n(x) gamma^s(x;r)}
@@ -48,15 +50,26 @@ rstrauss <- function(beta=100,
                      toroidal=FALSE,
                      verb=FALSE,
                      perfect=FALSE,
-                     blocking=FALSE) {
+                     blocking=FALSE,
+                     start=NULL) {
   d <- ncol(bbox)
   win <- unlist(bbox)
   if(blocking & perfect) warning("Blocking not implemented for dCFTP.")
   if(blocking & !perfect & missing(n)) warning("Blocking for BD is extremely inefficient.")
+  #
+  #
   # choose algorithm
   # conditional MH simulation
-  if(!missing(n)) 
-    xyz <- rstrauss_MH(n, gamma, range, win, toroidal, iter, verb, as.numeric(blocking))
+  if(!missing(n)) {
+    if(!is.null(start)) {
+      if(!is.matrix(start)) 
+        stop("start configuration should be a matrix with same ncol as bbox dimension.")
+    } else{
+      start <- apply(bbox, 2, function(ab) runif(n, ab[1], ab[2])  )
+    }
+    xyz <- rstrauss_MH(n, gamma, range, win, toroidal, iter, verb, as.numeric(blocking), start)
+  
+  }
   # else we have a non-fixed number of points
   else if(perfect) 
     xyz <- rstrauss_DCFTP(beta, gamma, range, win, toroidal, T0=2, dbg=verb, maxtry=iter, blocking)

@@ -4,7 +4,7 @@
 \usage{
 rstrauss(beta = 100, gamma = 1, range = 0.1, n, bbox = cbind(c(0, 1),
   c(0, 1), c(0, 1)), iter = 10000, toroidal = FALSE, verb = FALSE,
-  perfect = FALSE, blocking = FALSE)
+  perfect = FALSE, blocking = FALSE, start = NULL)
 }
 \arguments{
   \item{beta}{The beta parameter, controls (but does not
@@ -34,6 +34,9 @@ rstrauss(beta = 100, gamma = 1, range = 0.1, n, bbox = cbind(c(0, 1),
 
   \item{blocking}{MH: Use grid- book keeping to look for
   neighbours, worth it for large patterns.}
+
+  \item{start}{a 2/3d column matrix of starting
+  locations,i.e. Initial configuration. ONLY FOR MH.}
 }
 \value{
 A list with \item{x}{2- or 3-dimensional table with the

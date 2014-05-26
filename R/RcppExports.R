@@ -9,7 +9,7 @@ rstrauss_DCFTP <- function(beta, gamma, R, win, toroidal, T0, dbg, maxtry, block
     .Call('rstrauss_rstrauss_DCFTP', PACKAGE = 'rstrauss', beta, gamma, R, win, toroidal, T0, dbg, maxtry, blocking)
 }
 
-rstrauss_MH <- function(n, gamma, R, win, toroidal, iter, dbg, blocking) {
-    .Call('rstrauss_rstrauss_MH', PACKAGE = 'rstrauss', n, gamma, R, win, toroidal, iter, dbg, blocking)
+rstrauss_MH <- function(n, gamma, R, win, toroidal, iter, dbg, blocking, start) {
+    .Call('rstrauss_rstrauss_MH', PACKAGE = 'rstrauss', n, gamma, R, win, toroidal, iter, dbg, blocking, start)
 }
 

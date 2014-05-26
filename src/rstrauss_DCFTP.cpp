@@ -144,7 +144,10 @@ List rstrauss_DCFTP(double beta, double gamma, double R,
   
   if(dbg) printf("\n");
   // and we are done. build the result:
+  if(L.size()==0) printf("Warning: returning 0 points.\n");
   std::vector<double> rx(L.size()), ry(L.size()), rz;
+//  rx.clear();
+//  ry.clear();
   rz.clear();
   
   for(i=0; i < L.size(); i++) {
