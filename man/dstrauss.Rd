@@ -18,8 +18,9 @@ dstrauss(x, beta, gamma, range, method = "OT", ...)
 
   \item{...}{passed to constant approximator.
 
-  See \code{\link{approx_strauss_constant}} for the
-  methods}
+  See \code{\link{approx_strauss_constant}} for the methods
+
+  The value is in logaritm scale}
 }
 \description{
 Now only for cuboidal window

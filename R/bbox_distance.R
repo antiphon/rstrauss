@@ -10,3 +10,12 @@ bbox_distance <- function(x, bbox){
   }
   c(apply(x, 1, di))
 }
+
+#' dilate bbox
+#'
+#' @param bbox bounding box 
+#' @param r size of dilation
+#' @export
+bbox_dilate <- function(bbox, r){
+  apply(bbox, 2, function(ab) ab + c(-1,1)*r  )
+}

@@ -11,6 +11,8 @@
 #' 
 #' See \code{\link{approx_strauss_constant}} for the methods
 #' 
+#' The value is in logaritm scale
+#' 
 #' @import cutgeom
 #' @export
 
@@ -19,8 +21,8 @@ dstrauss <- function(x, beta, gamma, range, method="OT", ...) {
   winV <- prod(apply(x$bbox, 2, diff))
   dim <- ncol(x$bbox)
   #' the constant:
-  Z <- approximate_strauss_constant_OT(beta, gamma, range, bbox=x$bbox, method=method, ...)
+  lZ <- approximate_strauss_constant(beta, gamma, range, bbox=x$bbox, method=method, ...)
   #'
-  beta^nrow(x$x) * gamma^pairs / Z
+  nrow(x$x)*log(beta)+pairs*log(gamma) - lZ
 }
 

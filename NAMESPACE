@@ -1,11 +1,9 @@
-<<<<<<< HEAD
 export(LambertW)
-=======
->>>>>>> 6743fafc3491e8da0bb06735996edbbe3038004f
 export(approximate_strauss_constant)
 export(approximate_strauss_constant_OT)
 export(approximate_strauss_constant_PS)
 export(approximate_strauss_constant_penttinen)
+export(bbox_dilate)
 export(bbox_distance)
 export(dstrauss)
 export(rstrauss)
