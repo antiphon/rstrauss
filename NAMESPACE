@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 export(LambertW)
-=======
-<<<<<<< HEAD
-export(LambertW)
-=======
->>>>>>> 6743fafc3491e8da0bb06735996edbbe3038004f
->>>>>>> 77e18cd4c85f76c098ec12c3baa6d43ac7129a83
 export(approximate_strauss_constant)
 export(approximate_strauss_constant_OT)
 export(approximate_strauss_constant_PS)
@@ -16,6 +9,7 @@ export(dstrauss)
 export(rstrauss)
 export(strauss_intensity)
 export(strauss_theory)
+export(vbstrauss)
 import(Rcpp)
 import(cutgeom)
 import(multicore)

@@ -1,6 +1,6 @@
 \name{approximate_strauss_constant}
 \alias{approximate_strauss_constant}
-\title{Master: Approximate Strauss constant}
+\title{Approximate Strauss constant (master function)}
 \usage{
 approximate_strauss_constant(beta, gamma, range, bbox, method = "P", ...)
 }
@@ -18,15 +18,16 @@ approximate_strauss_constant(beta, gamma, range, bbox, method = "P", ...)
   \item{...}{further details for methods
 
   Methods: OT : Direct approx., Ogata&Tanemura 1981.
-  \code{approximate_strauss_constant_OT}
+  \code{\link{approximate_strauss_constant_OT}}
 
-  P: Direct approx., Penttinen
-  1998\code{approximate_strauss_constant_penttinen}
+  P: Direct approx., Penttinen 1998.
+  \code{\link{approximate_strauss_constant_penttinen}}
 
   PS: MC unbiased estimate, Path sampling Berthelsen&Moller
-  2003. \code{approximate_strauss_constant_PS}}
+  2003. \code{\link{approximate_strauss_constant_PS}}}
 }
 \description{
-Master: Approximate Strauss constant
+Approximate the normalizing constant (Z) in the Strauss
+density.
 }
 

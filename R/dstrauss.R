@@ -11,7 +11,7 @@
 #' 
 #' See \code{\link{approx_strauss_constant}} for the methods
 #' 
-#' The value is in logaritm scale
+#' The value is in logarithm scale
 #' 
 #' @import cutgeom
 #' @export

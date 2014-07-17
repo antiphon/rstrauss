@@ -2,16 +2,24 @@
 #' 
 #' @export 
 
-approximate_strauss_constant_OT <- function(beta, gamma, range, bbox, Nmax=10000, deg=2){
+approximate_strauss_constant_OT <- function(beta, gamma, range, bbox, Nmax=10000, n, deg=2){
   N <- 0:Nmax
-  winVol <- prod(apply(bbox, 2, diff))
+  V <- prod(apply(bbox, 2, diff))
   dim <- ncol(bbox)
   a <- pi * (1-gamma) * (if(dim==2) (range^2) else ((4/3)*range^3))
   if(deg==3){
     
   }
-  pn <- N*log(beta*winVol) + (N*(N-1)/2)*log(1-a/winVol)  - lfactorial(N)
-  log(sum(exp(pn))) - winVol
+  if(missing(n)){
+    pn <- N*(log(beta)+log(V)) + (N*(N-1)/2)*log(1-a/V)  - lfactorial(N)
+    v <- log(sum(exp(pn))) - V
+    if(!is.finite(v)){
+      warning(paste("non-finite value, reducing Nmax to ", Nmax <- round(Nmax * 0.75)) )
+      v <- approximate_strauss_constant_OT(beta, gamma, range, bbox, Nmax, n, deg)
+    }
+  }
+  else v <- n*log(V)+(n*(n-1)/2)*log(1-a/V)
+  v
 }
 
 

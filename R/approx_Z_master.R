@@ -1,4 +1,6 @@
-#' Master: Approximate Strauss constant
+#' Approximate Strauss constant (master function)
+#' 
+#' Approximate the normalizing constant (Z) in the Strauss density.
 #' 
 #' @param beta beta
 #' @param gamma gamma
@@ -8,11 +10,11 @@
 #' @param ... further details for methods
 #' 
 #' Methods: 
-#' OT : Direct approx., Ogata&Tanemura 1981. \code{approximate_strauss_constant_OT}
+#' OT : Direct approx., Ogata&Tanemura 1981. \code{\link{approximate_strauss_constant_OT}}
 #' 
-#' P: Direct approx., Penttinen 1998\code{approximate_strauss_constant_penttinen}
+#' P: Direct approx., Penttinen 1998. \code{\link{approximate_strauss_constant_penttinen}}
 #' 
-#' PS: MC unbiased estimate, Path sampling Berthelsen&Moller 2003. \code{approximate_strauss_constant_PS}
+#' PS: MC unbiased estimate, Path sampling Berthelsen&Moller 2003. \code{\link{approximate_strauss_constant_PS}}
 #' 
 #' @export
 
