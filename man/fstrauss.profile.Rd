@@ -1,0 +1,17 @@
+\name{fstrauss.profile}
+\alias{fstrauss.profile}
+\title{Profile pseudolikelihood for Strauss}
+\usage{
+fstrauss.profile(R, ..., verb = FALSE)
+}
+\arguments{
+  \item{R}{vector of R, interaction range, values to try
+  out}
+
+  \item{...}{parameters passed to \\code{link{fstrauss}}}
+}
+\description{
+Compute the likelihood profile for vector of interaction
+ranges. (basically a for-loop)
+}
+

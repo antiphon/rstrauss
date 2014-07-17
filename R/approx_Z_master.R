@@ -9,7 +9,10 @@
 #' @param method OT, PS or P
 #' @param ... further details for methods
 #' 
+#' Conditioning on number of points can be done with OT and P by setting the named parameter n.
+#' 
 #' Methods: 
+#' 
 #' OT : Direct approx., Ogata&Tanemura 1981. \code{\link{approximate_strauss_constant_OT}}
 #' 
 #' P: Direct approx., Penttinen 1998. \code{\link{approximate_strauss_constant_penttinen}}

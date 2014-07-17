@@ -5,6 +5,41 @@
 
 using namespace Rcpp;
 
+// c_cutgeom
+List c_cutgeom(NumericMatrix x, List nlist, double r);
+RcppExport SEXP rstrauss_c_cutgeom(SEXP xSEXP, SEXP nlistSEXP, SEXP rSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP );
+        Rcpp::traits::input_parameter< List >::type nlist(nlistSEXP );
+        Rcpp::traits::input_parameter< double >::type r(rSEXP );
+        List __result = c_cutgeom(x, nlist, r);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// c_geom
+List c_geom(NumericMatrix x, IntegerVector from, IntegerVector to, double r);
+RcppExport SEXP rstrauss_c_geom(SEXP xSEXP, SEXP fromSEXP, SEXP toSEXP, SEXP rSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP );
+        Rcpp::traits::input_parameter< IntegerVector >::type from(fromSEXP );
+        Rcpp::traits::input_parameter< IntegerVector >::type to(toSEXP );
+        Rcpp::traits::input_parameter< double >::type r(rSEXP );
+        List __result = c_geom(x, from, to, r);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // rstrauss_BD
 List rstrauss_BD(double beta, double gamma, double R, NumericVector win, int toroidal, int iter, int dbg, double blocking);
 RcppExport SEXP rstrauss_rstrauss_BD(SEXP betaSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP) {

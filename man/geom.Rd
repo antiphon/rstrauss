@@ -1,0 +1,21 @@
+\name{geom}
+\alias{geom}
+\title{geometric graph}
+\usage{
+geom(x, from, to, r)
+}
+\arguments{
+  \item{x}{matrix of location coordinates}
+
+  \item{from}{default 1:nrow(x), indices for which to
+  compute edges}
+
+  \item{to}{default 1:nrow(x), indices which account as
+  potent. neighbours}
+
+  \item{r}{radius for neighbourhood}
+}
+\description{
+geometric graph
+}
+

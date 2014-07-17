@@ -7,7 +7,7 @@
 #' @param ... passed on to rstrauss simulator
 #' @return
 #' Value is the natural log of Z(theta)
-#' @import multicore cutgeom
+#' @import multicore
 #' @export 
 
 approximate_strauss_constant_PS <- function(beta, gamma, range, bbox, nsim=10, steps=10, perfMaxIter=1e5, MHiter=1000, ...){

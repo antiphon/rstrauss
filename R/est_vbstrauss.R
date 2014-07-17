@@ -1,10 +1,11 @@
 #' Mean field fit of Strauss process using pseudolikelihood approximation
 #' 
+#' Not yet implemented properly.
 #' 
-#' @import cutgeom
 #' @export
 
-vbstrauss <- function(x, range, nx=25, eps=1e-4, maxiter=100, verb=FALSE){
+fstrauss.vb <- function(x, range, nx=25, eps=1e-4, maxiter=100, verb=FALSE){
+  stop("VB-PL not yet ready.")
   dbb <- apply(x$bbox, 2, diff)
   V <- prod(dbb)
   abb <- dbb/dbb[1]

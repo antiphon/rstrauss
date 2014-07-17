@@ -13,7 +13,6 @@
 #' 
 #' The value is in logarithm scale
 #' 
-#' @import cutgeom
 #' @export
 
 dstrauss <- function(x, beta, gamma, range, method="OT", ...) {

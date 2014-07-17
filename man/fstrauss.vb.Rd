@@ -1,8 +1,8 @@
-\name{vbstrauss}
-\alias{vbstrauss}
+\name{fstrauss.vb}
+\alias{fstrauss.vb}
 \title{Mean field fit of Strauss process using pseudolikelihood approximation}
 \usage{
-vbstrauss(x, range, nx = 25, eps = 1e-04, maxiter = 100, verb = FALSE)
+fstrauss.vb(x, range, nx = 25, eps = 1e-04, maxiter = 100, verb = FALSE)
 }
 \description{
 Not yet implemented properly.

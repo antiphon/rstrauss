@@ -17,7 +17,12 @@ approximate_strauss_constant(beta, gamma, range, bbox, method = "P", ...)
 
   \item{...}{further details for methods
 
-  Methods: OT : Direct approx., Ogata&Tanemura 1981.
+  Conditioning on number of points can be done with OT and
+  P by setting the named parameter n.
+
+  Methods:
+
+  OT : Direct approx., Ogata&Tanemura 1981.
   \code{\link{approximate_strauss_constant_OT}}
 
   P: Direct approx., Penttinen 1998.
