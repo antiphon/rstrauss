@@ -1,4 +1,4 @@
-#include <Math.h>
+#include <math.h>
 #include "potentials.h"
 
 //double potential(std::vector<double> x, 

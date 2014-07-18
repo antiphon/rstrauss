@@ -121,7 +121,8 @@ void Pp::remove_blockmembership(int *i){
       blockmembers.at(k).erase( blockmembers.at(k).begin()+j );
 //      printf(" (ok)\n");
     }
-    else{ printf("** %i not in right block ?\n", *i);}
+    else{ //printf("** %i not in right block ?\n", *i);
+    }
   }
 }
 /********************************************************************************************/
