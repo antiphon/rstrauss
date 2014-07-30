@@ -22,8 +22,8 @@ fstrauss.direct <- function(x, R, lower=c(1e-9, 1e-9), upper=c(Inf, 1), init, ..
   dim <- ncol(bbox)
   VR <- R^dim * ( if(dim==3) 3*pi/4 else pi )
   #' reduced sample border correction
-  bbox_dil <- bbox_erode(bbox, R)
-  V <- prod(apply(bbox_dil, 2, diff))
+  bbox_ero <- bbox_erode(bbox, R)
+  V <- prod(apply(bbox_ero, 2, diff))
   #' compute statistics, reduced sample border correction
   bbdists <- bbox_distance(x, bbox)
   inside <- which(bbdists > R)
@@ -44,7 +44,7 @@ fstrauss.direct <- function(x, R, lower=c(1e-9, 1e-9), upper=c(Inf, 1), init, ..
   
   #' optim function
   fun <- function(theta) {
-    lz <- approximate_strauss_constant(theta[1], theta[2], R, bbox_dil, ...)
+    lz <- approximate_strauss_constant(theta[1], theta[2], R, bbox_ero, ...)
     v<-lz - tv%*%log(theta) # to maximize must be inverted
     if(is.finite(v)) v else 1e9
   }
@@ -54,7 +54,7 @@ fstrauss.direct <- function(x, R, lower=c(1e-9, 1e-9), upper=c(Inf, 1), init, ..
   coef  <- c(res$par, R)
   names(coef) <- c("beta", "gamma", "r_given")
   #' log-likelihood
-  lz <- approximate_strauss_constant(coef[1], coef[2], R, bbox_dil, ... )
+  lz <- approximate_strauss_constant(coef[1], coef[2], R, bbox_ero, ... )
   ll <- tv%*%log(coef[1:2])-lz
   list(theta=coef, optim_out=res, logLik=ll)
 }

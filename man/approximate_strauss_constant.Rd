@@ -2,7 +2,7 @@
 \alias{approximate_strauss_constant}
 \title{Approximate Strauss constant (master function)}
 \usage{
-approximate_strauss_constant(beta, gamma, range, bbox, method = "P", ...)
+approximate_strauss_constant(beta, gamma, range, bbox, method = "R", ...)
 }
 \arguments{
   \item{beta}{beta}
@@ -13,7 +13,7 @@ approximate_strauss_constant(beta, gamma, range, bbox, method = "P", ...)
 
   \item{bbox}{bounding box}
 
-  \item{method}{OT, PS or P}
+  \item{method}{OT, PS, P or R. Default: R}
 
   \item{...}{further details for methods
 
@@ -29,7 +29,10 @@ approximate_strauss_constant(beta, gamma, range, bbox, method = "P", ...)
   \code{\link{approximate_strauss_constant_penttinen}}
 
   PS: MC unbiased estimate, Path sampling Berthelsen&Moller
-  2003. \code{\link{approximate_strauss_constant_PS}}}
+  2003. \code{\link{approximate_strauss_constant_PS}}
+
+  R: My own version for unconditional Z. Based on a normal
+  approximation (not published). Works when beta*Area >> 0}
 }
 \description{
 Approximate the normalizing constant (Z) in the Strauss

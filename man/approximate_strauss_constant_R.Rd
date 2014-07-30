@@ -1,0 +1,12 @@
+\name{approximate_strauss_constant_R}
+\alias{approximate_strauss_constant_R}
+\title{approximate unconditional Strauss constant using Gaussian approx. of the expectation}
+\usage{
+approximate_strauss_constant_R(beta, gamma, range, bbox, n)
+}
+\description{
+Same Poisson approximation for Z_n as in Penttinen, but the
+unconditional is via Gaussian expectation instead of
+numerical integration.
+}
+
