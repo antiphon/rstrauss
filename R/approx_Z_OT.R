@@ -2,7 +2,7 @@
 #' 
 #' @export 
 
-approximate_strauss_constant_OT <- function(beta, gamma, range, bbox, Nmax=10000, n, deg=2){
+approximate_strauss_constant_OT <- function(beta, gamma, range, bbox, Nmax=10000, n, deg=2, ...){
   N <- 0:Nmax
   V <- prod(apply(bbox, 2, diff))
   dim <- ncol(bbox)

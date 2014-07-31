@@ -1,0 +1,12 @@
+\name{fstrauss.vbll}
+\alias{fstrauss.vbll}
+\title{Mean field fit of Strauss process using logistic likelihood approximation}
+\usage{
+fstrauss.vbll(x, R, rho, eps = 1e-04, maxiter = 100, verb = FALSE, ...)
+}
+\description{
+Using Jaakkola&Jordan 1996 quadratic variational approach
+to the Baddeley et al 2014 logistic likelihood
+approximation of the point pattern likelihood.
+}
+

@@ -19,6 +19,7 @@
 #' \item{LL}{Logistic likelihood approximation (Baddeley et al 2014). See \link{fstrauss.logistic}}
 #' \item{D}{Direct optimization using approximation of the normalizing constant. See \link{fstrauss.direct}}
 #' \item{B}{Bayesian version of D. \link{fstrauss.bayes}}
+#' \item{VB}{Bayesian fit using logistic likelihood and variational methods \link{fstrauss.vbll}}
 #' }
 #' 
 #' @export
@@ -27,7 +28,7 @@ fstrauss <- function(x, R, approx="D", ...) {
   m <- pmatch(approx, avail<-c("LL","D","B", "VB"))
   if(is.na(m))stop(paste("Method should be one of:", paste(avail, collapse=", ")))
   X <- convert_to_pp(x)
-  f <- get(paste0("fstrauss.", c("logistic", "direct", "bayes", "vb"))[m])
+  f <- get(paste0("fstrauss.", c("logistic", "direct", "bayes", "vbll"))[m])
   result <- f(x=X, R=R, ...)
   
   #' class

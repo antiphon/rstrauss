@@ -6,7 +6,7 @@
 #' 
 #' @export 
 
-approximate_strauss_constant_R <- function(beta, gamma, range, bbox, n){
+approximate_strauss_constant_R <- function(beta, gamma, range, bbox, n, ...){
   V <- prod(apply(bbox, 2, diff))
   dim <- ncol(bbox)
   a <- pi * (1-gamma) * (if(dim==2) (range^2) else ((4/3)*range^3))

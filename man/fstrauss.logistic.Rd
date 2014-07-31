@@ -2,7 +2,7 @@
 \alias{fstrauss.logistic}
 \title{Fit Strauss process to data using Logistic likelihood method}
 \usage{
-fstrauss.logistic(x, R, rho)
+fstrauss.logistic(x, R, rho, ...)
 }
 \arguments{
   \item{x}{a list with elements $x:data.frame of locations

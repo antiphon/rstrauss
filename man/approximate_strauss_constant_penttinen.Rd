@@ -3,7 +3,7 @@
 \title{approximate Strauss constant using Penttinen84 approx.}
 \usage{
 approximate_strauss_constant_penttinen(beta, gamma, range, bbox, Nmax = 10000,
-  n)
+  n, ...)
 }
 \description{
 approximate Strauss constant using Penttinen84 approx.

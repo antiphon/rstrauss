@@ -25,7 +25,9 @@ fstrauss(x, R, approx = "D", ...)
   al 2014). See \link{fstrauss.logistic}} \item{D}{Direct
   optimization using approximation of the normalizing
   constant. See \link{fstrauss.direct}} \item{B}{Bayesian
-  version of D. \link{fstrauss.bayes}} }}
+  version of D. \link{fstrauss.bayes}} \item{VB}{Bayesian
+  fit using logistic likelihood and variational methods
+  \link{fstrauss.vbll}} }}
 }
 \description{
 NOTE: This is an early version.

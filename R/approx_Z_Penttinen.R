@@ -2,7 +2,7 @@
 #' 
 #' @export 
 
-approximate_strauss_constant_penttinen <- function(beta, gamma, range, bbox, Nmax=10000, n){
+approximate_strauss_constant_penttinen <- function(beta, gamma, range, bbox, Nmax=10000, n, ...){
   N <- 0:Nmax
   V <- prod(apply(bbox, 2, diff))
   dim <- ncol(bbox)

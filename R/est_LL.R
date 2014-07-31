@@ -6,7 +6,7 @@
 #' @param rho density of Poisson dummies
 #' @export
 
-fstrauss.logistic <- function(x, R, rho) {
+fstrauss.logistic <- function(x, R, rho, ...) {
   bbox <- if(is.list(x)) x$bbox else apply(x, 2, range)
   x <- ( if(is.list(x)) x$x else x )
   N <- nrow(x)
@@ -15,7 +15,7 @@ fstrauss.logistic <- function(x, R, rho) {
   #' dummy intensity
   if(missing(rho)) rho <- 4*N/V
   #'
-  K <- rpois(1, rho)
+  K <- rpois(1, rho*V)
   dummies <- apply(bbox, 2, function(ra) runif(K, ra[1], ra[2]))
   colnames(dummies) <- colnames(x)
   #'
@@ -29,7 +29,7 @@ fstrauss.logistic <- function(x, R, rho) {
   #'
   bdry <- bbox_distance(loc, bbox) > R
   #' offset
-  H <- rep(log(V/rho), K+N)
+  H <- rep(log(1/rho), K+N)
   #' fit
   fit <- glm(z~X, family="binomial", offset=H, subset=bdry)
   #'
