@@ -1,13 +1,15 @@
-\name{fstrauss}
-\alias{fstrauss}
-\title{Fit stationary and isotropic Strauss process in 2D and 3D}
+\name{fgibbs}
+\alias{fgibbs}
+\title{Fit stationary and isotropic exp-family Gibbs process in 2D and 3D}
 \usage{
-fstrauss(x, R, approx = "LL", ...)
+fgibbs(x, par, model, approx = "LL", ...)
 }
 \arguments{
   \item{x}{Point pattern, see details for format.}
 
-  \item{R}{The fixed interaction radius.}
+  \item{par}{Fixed parameters}
+
+  \item{model}{interaction model.}
 
   \item{approx}{Which approximation method to use. Default:
   "LL". See details.}

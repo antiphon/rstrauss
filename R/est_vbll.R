@@ -25,14 +25,14 @@ fstrauss.vbll <- function(x, R, rho, eps=1e-4, maxiter=100, verb=FALSE, ...){
   G  <- geom(rbind(x$x, dummies), to=1:N, r=R)
   S <- sapply(G, length)
   #'
-  #' Compile standard glm formal data
+  #' Compile standard glm formal data, inlclude intercept (1. column)
   X <- cbind(1,S)
   y <- c(rep(1, N), rep(0, K))
   offset <- log( 1/rho ) # same for all, data and dummies alike (@TODO: inhomogeneous version)
   #'
-  fit <- vb.logit(y=y, X=t(X), offset=offset, verb=verb, ...)
+  fit <- vb.logit(y=y, X=X, offset=offset, verb=verb, ...)
   coef  <- c(exp(unname(fit$m[,1])), R)
   names(coef) <- c("beta", "gamma", "r_given")
-  list(theta=coef, fit=fit, logLik=fit$logp[length(fit$logp)])
+  list(theta=coef, fit=fit, logLik=fit$logLik)
 }
 

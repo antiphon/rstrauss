@@ -24,7 +24,7 @@
 #' 
 #' @export
 
-fstrauss <- function(x, R, approx="D", ...) {
+fstrauss <- function(x, R, approx="LL", ...) {
   m <- pmatch(approx, avail<-c("LL","D","B", "VB"))
   if(is.na(m))stop(paste("Method should be one of:", paste(avail, collapse=", ")))
   X <- convert_to_pp(x)
