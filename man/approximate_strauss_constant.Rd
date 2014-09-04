@@ -31,11 +31,14 @@ approximate_strauss_constant(beta, gamma, range, bbox, method = "R", ...)
   PS: MC unbiased estimate, Path sampling Berthelsen&Moller
   2003. \code{\link{approximate_strauss_constant_PS}}
 
-  R: My own version for unconditional Z. Based on a normal
-  approximation (not published). Works when beta*Area >> 0}
+  R: My own version for unconditional case. Based on a
+  normal approximation (not published). Works when
+  beta*Area >> 0
+
+  The returned value is in log-scale.}
 }
 \description{
-Approximate the normalizing constant (Z) in the Strauss
-density.
+Approximate the (log of) normalizing constant in the
+Strauss density. Log-scale.
 }
 
