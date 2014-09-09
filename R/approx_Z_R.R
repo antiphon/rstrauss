@@ -1,8 +1,10 @@
 #' approximate unconditional Strauss constant using Gaussian approx. of the expectation
 #' 
-#' Same Poisson approximation for Z_n as in Penttinen, 
+#' The same Poisson approximation for Z_n as in Penttinen, 
 #' but the unconditional is via Gaussian expectation
 #' instead of numerical integration.
+#' 
+#' See \link{approximate_strauss_constant_penttinen} .
 #' 
 #' @export 
 
@@ -22,6 +24,4 @@ approximate_strauss_constant_R <- function(beta, gamma, range, bbox, n, ...){
   else v <- n*log(V)- (0.5*n*(n-1)*a/V)
   v
 }
-
-
 

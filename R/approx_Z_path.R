@@ -24,11 +24,12 @@ approximate_strauss_constant_PS <- function(beta, gamma, range, bbox, nsim=10, s
   #' TODO: fix the border correction
   #' Calcuate one Sr, use reduced window border correction
   Sr <- function(x) {
-    G <- geom(x$x, r=range)    
     ok <- which(bbox_distance(x$x, bbox) > range) # exclude too close to border
-#     print(sum(ok)/length(ok))
-    sum(sapply(G[ok], function(j) length(intersect(ok,j))))/2 # number of pairs
-    #sum(sapply(G, length))/2 # number of pairs
+    Gok <- geom(x$x, from=ok, to=ok, r=range)    
+    Sok <- sum(sapply(Gok[ok], length)) / 2 # number of pairs, not necessarily distinct
+    Gout <- geom(x$x, from=ok, to=setdiff(1:nrow(x$x), ok), r=range)
+    sum(sapply(Gout, length)) + Sok
+    
   }
   #'
   #' path integral grid
