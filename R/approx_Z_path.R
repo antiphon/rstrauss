@@ -1,12 +1,15 @@
 #' approximate Strauss constant using Path sampling
 #' 
+#' The unconditonal constant, so you can't give n for this. 
+#' 
 #' @param nsim number of sims for MC expectation
 #' @param steps grid reso for gamma
 #' @param perfMaxIter max iter for the first perfect pattern
 #' @param MHiter iterations per MH simulations starting from perfect pattern
 #' @param ... passed on to rstrauss simulator
 #' @return
-#' Value is the natural log of Z(theta)
+#' Value is the natural log of Z(theta), unconditional.
+#' 
 #' @import multicore
 #' @export 
 
@@ -28,8 +31,7 @@ approximate_strauss_constant_PS <- function(beta, gamma, range, bbox, nsim=10, s
     Gok <- geom(x$x, from=ok, to=ok, r=range)    
     Sok <- sum(sapply(Gok[ok], length)) / 2 # number of pairs, not necessarily distinct
     Gout <- geom(x$x, from=ok, to=setdiff(1:nrow(x$x), ok), r=range)
-    sum(sapply(Gout, length)) + Sok
-    
+    sum(sapply(Gout, length)) + Sok 
   }
   #'
   #' path integral grid

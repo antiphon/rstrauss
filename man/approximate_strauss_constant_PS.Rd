@@ -19,9 +19,9 @@ approximate_strauss_constant_PS(beta, gamma, range, bbox, nsim = 10,
   \item{...}{passed on to rstrauss simulator}
 }
 \value{
-Value is the natural log of Z(theta)
+Value is the natural log of Z(theta), unconditional.
 }
 \description{
-approximate Strauss constant using Path sampling
+The unconditonal constant, so you can't give n for this.
 }
 

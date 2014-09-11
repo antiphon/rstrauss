@@ -1,0 +1,31 @@
+\name{approximate_strauss_constant_R3}
+\alias{approximate_strauss_constant_R3}
+\title{approximate Strauss constant using Gaussian approx. of the expectation}
+\usage{
+approximate_strauss_constant_R3(beta, gamma, range, bbox, n, ...)
+}
+\arguments{
+  \item{beta}{Beta}
+
+  \item{gamma}{Gamma}
+
+  \item{range}{Interaction range}
+
+  \item{bbox}{Bounding box (col. wise ranges), used for
+  dimension and volume.}
+
+  \item{n}{if given, compute the conditional Z.}
+
+  \item{...}{ignored.
+
+  Expectation to get the unconditional is using Gaussian
+  approximation.
+
+  This is the best in the package.}
+}
+\description{
+Conditional and unconditional approximation of normalizing
+constant of the stationary homogeneous Strauss model. Third
+order approximation, as Penttinen is second order.
+}
+

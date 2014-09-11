@@ -5,8 +5,11 @@
 approximate_strauss_constant_R(beta, gamma, range, bbox, n, ...)
 }
 \description{
-Same Poisson approximation for Z_n as in Penttinen, but the
-unconditional is via Gaussian expectation instead of
+The same Poisson approximation for Z_n as in Penttinen, but
+the unconditional is via Gaussian expectation instead of
 numerical integration.
+}
+\details{
+See \link{approximate_strauss_constant_penttinen} .
 }
 
