@@ -31,3 +31,13 @@ bbox_erode <- function(bbox, r=0.1) {
   if(any(bbox[1,]>bbox[2,])) warning("Eroded too much.")
   bbox
 }
+
+#' Cut coordinates with a bbox
+#' 
+#' @export
+bbox_cut <- function(x, bbox, ind=FALSE) {
+  if(ncol(x)!=ncol(bbox)) stop("Dimension mismatch.")
+  inside <- apply(sapply(1:ncol(x), function(i) x[,i] < bbox[2,i] & x[,i] > bbox[1,i]   ), 1, all)
+  if(ind) which(inside)
+  else x[inside,]
+}

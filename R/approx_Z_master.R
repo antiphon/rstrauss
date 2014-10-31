@@ -6,7 +6,7 @@
 #' @param gamma gamma
 #' @param range range
 #' @param bbox bounding box
-#' @param method OT, PS, P, R or R3. Default: R3
+#' @param method OT, PS, P, R or R3. Default: R
 #' @param ... further details for methods
 #' 
 #' For all methods but "PS" conditioning on number of points is by setting the named parameter n.

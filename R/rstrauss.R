@@ -19,7 +19,7 @@
 #' @param perfect Use dCFTP simulation? Otherwise BD, unless n given which use MH.
 #' @param blocking MH: Use grid- book keeping to look for neighbours, worth it for large patterns.
 #' @param start a 2/3d column matrix of starting locations,i.e. Initial configuration. ONLY FOR MH.
-#' 
+#' @param CFTP_T0 Starting backward time for dCFTP. Default 2. Doubled each iteration.
 #' @details
 #' The density of a realisation x of Strauss(beta, gamma, r), where r is the range, is
 #' \deqn{f(x)= alfa beta^n(x) gamma^s(x;r)}
@@ -51,7 +51,8 @@ rstrauss <- function(beta=100,
                      verb=FALSE,
                      perfect=FALSE,
                      blocking=FALSE,
-                     start=NULL) {
+                     start=NULL,
+                     CFTP_T0=2) {
   d <- ncol(bbox)
   win <- unlist(bbox)
   if(blocking & perfect) warning("Blocking not implemented for dCFTP.")
@@ -72,7 +73,7 @@ rstrauss <- function(beta=100,
   }
   # else we have a non-fixed number of points
   else if(perfect) 
-    xyz <- rstrauss_DCFTP(beta, gamma, range, win, toroidal, T0=2, dbg=verb, maxtry=iter, blocking)
+    xyz <- rstrauss_DCFTP(beta, gamma, range, win, toroidal, T0=CFTP_T0, dbg=verb, maxtry=iter, blocking)
   else 
     xyz <- rstrauss_BD(beta, gamma, range, win, toroidal, iter, verb, as.numeric(blocking))
   # 
