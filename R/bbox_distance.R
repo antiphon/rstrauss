@@ -32,6 +32,14 @@ bbox_erode <- function(bbox, r=0.1) {
   bbox
 }
 
+#' bbox volume
+#' 
+#' @export
+bbox_volume <- function(bbox) {
+  prod(apply(bbox, 2, diff))
+}
+
+
 #' Cut coordinates with a bbox
 #' 
 #' @export
