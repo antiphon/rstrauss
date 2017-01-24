@@ -33,7 +33,7 @@ fstrauss.direct <- function(x, R, lower=c(1e-9, 1e-9), upper=c(Inf, 1), init, ..
   nlist_2out <- geom(x, from=inside, to=outside, r=R)
   degs_in <- sapply(nlist_in, length)
   degs_2out <- sapply(nlist_2out, length)
-  tv <- cbind(N, sum(degs_in)/2 + sum(degs_2out))
+  tv <- c(N, sum(degs_in)/2 + sum(degs_2out))
   #' initial values
   initial_values <- if(missing(init)){
     lambda <-  N/V
@@ -45,7 +45,7 @@ fstrauss.direct <- function(x, R, lower=c(1e-9, 1e-9), upper=c(Inf, 1), init, ..
   #' optim function
   fun <- function(theta) {
     lz <- approximate_strauss_constant(theta[1], theta[2], R, bbox_ero, ...)
-    v<-lz - tv%*%log(theta) # to maximize must be inverted
+    v <- lz - sum(tv*log(theta)) # to maximize must be inverted
     if(is.finite(v)) v else 1e9
   }
   #'
