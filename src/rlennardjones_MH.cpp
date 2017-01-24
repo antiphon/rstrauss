@@ -62,9 +62,9 @@ List rlennardjones_MH(int n, double sigma, double epsilon, NumericVector win,
     else {
       X.move_back();
     }
-    if(dbg) printf("\r %i/%i", i+1, iter);
+    if(dbg) Rprintf("\r %i/%i", i+1, iter);
   }
-  if(dbg) printf(" MH done.\n");
+  if(dbg) Rprintf(" MH done.\n");
   
   // and we are done. Compile results:
   NumericVector x(X.size()), y(X.size()), z;
