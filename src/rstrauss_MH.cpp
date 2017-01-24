@@ -3,6 +3,7 @@
 #include "potentials.h"
 #include "helpers.h"
 #include "Pp.h"
+#include "Pplited.h"
 
 using namespace Rcpp;
 
@@ -93,4 +94,71 @@ List rstrauss_MH(int n, double gamma, double R, NumericVector win,
   List xyz =   List::create(x, y, z);
   return(xyz);
 }
+
+
+// [[Rcpp::export]]
+List rstrauss_MH_high_dimension(int n, double gamma, double R, NumericVector win, 
+                                int toroidal, int iter, int dbg, NumericMatrix start) {
+  RNGScope scope;
+  int i, j,l;
+  
+  int dim = (int) win.size()/2;
+  
+  if(dbg) Rprintf("High dimension, baby (d=%i)\n", dim);
+  //initial pattern
+  std::vector<double> window;
+  for(j=0; j < win.size(); j++) window.push_back(win(j));
+  Pplited X(window, toroidal); 
+  
+  double xnew[dim];
+  Rprintf("retrieving\n");
+  // retreive starting
+  for(i=0; i < n; i++){
+    for(l=0; l < dim; l++) xnew[l] = start(i,l);
+    int new_id = X.push_back(xnew);
+  }
+  Rprintf("looping\n");
+  // then we loop
+  int acc = 0;
+  double E_old, E_new;
+  double xold[dim];
+  double alpha;
+  
+  for(i=0; i < iter; i++) {
+    j = sample_j(n); //i%n;
+    //    printf("potential\n");
+    E_old = potential(X, gamma, R, j);
+    for(l=0; l < dim; l++) {
+      xnew[l] = runif(1, win[2*l], win[2*l+1])(0);
+      xold[l] = X.getCoord(&j, &l);
+    }
+    //    printf("moving\n");
+    X.move_cache(&j, xnew);
+    //    printf("potential\n");
+    E_new = potential(X, gamma, R, j);
+    if(E_old == 0 & E_new > 0) {alpha = 1;}
+    else if(E_new == 0) { alpha = 0;}
+    else {alpha = E_new/E_old; }
+    if(runif(1)(0) < alpha) {
+      acc += 1;
+    }
+    else {
+      X.move_back();
+    }
+    if(dbg) Rprintf("\r %i/%i", i+1, iter);
+  }
+  if(dbg) Rprintf(" MH done.\n");
+  
+  // and we are done. Compile results:
+  NumericMatrix out(X.size(), dim);
+  for(i=0; i < X.size(); i++)
+    for(l = 0; l < dim; l++)
+      out(i,l)=X.getCoord(&i, &l); 
+  
+  List xyz =   List::create(Named("coords")=out);
+  return(xyz);
+}
+
+
+
 

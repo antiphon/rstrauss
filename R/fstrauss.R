@@ -31,7 +31,7 @@ fstrauss <- function(x, R, approx="LL", ...) {
   f <- get(paste0("fstrauss.", c("logistic", "direct", "bayes", "vbll"))[m])
   result <- f(x=X, R=R, ...)
   
-  #' class
+  # class
   result$method <- avail[m]
   class(result) <- c("straussfit", class(result))
   result

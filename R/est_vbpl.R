@@ -13,28 +13,28 @@ fstrauss.vb <- function(x, range, nx=25, eps=1e-4, maxiter=100, verb=FALSE){
   dim <- ncol(x$bbox)
   
   cat2 <- if(verb) cat else function(...) NULL
-  #' grid
+  # grid
   ng <- round(abb * nx)
   gridc <- sapply(1:dim, 
                 function(i) 
                   seq(x$bbox[1,i]+range, x$bbox[2,i]-range, length=ng[i]) )
   grid <- as.matrix(expand.grid(as.data.frame(gridc)))
   m <- nrow(grid)
-  #' cell vol
+  # cell vol
   v <- V/prod(ng)
-  #' neighbours
+  # neighbours
   G  <- geom(x$x, r=range)
   S <- sum(sapply(G, length))/2
   Gu <- geom(rbind(grid, x$x), to=(m+1):(n+m), from=1:m, r=range)
   Su <- sapply(Gu[1:m], length)
-  #'
+  #
   iter <- 0
-  #'
+  #
   priors <- list(gamma=c(1, 1), beta=c(1, 0.001))
-  #'
+  #
   gamma0 <- 1
   beta0 <- n/V
-  #'
+  #
   gseq <- seq(0, 1, length=500)
   post <- list(beta=c(priors$beta[1]+n, 0), gamma=(gseq*0+1)/length(gseq))
   bhist <- NULL
@@ -43,10 +43,10 @@ fstrauss.vb <- function(x, range, nx=25, eps=1e-4, maxiter=100, verb=FALSE){
   while(loop){
     bhist<-c(bhist, b0 <- post$beta[2])
     g0 <- post$gamma
-    #' update beta
+    # update beta
     s <- sapply(Su, function(deg) sum( post$gamma * (gseq^deg) ) ) 
     post$beta[2] <- priors$beta[2] + v*sum(s)
-    #' update gamma
+    # update gamma
     mub <- post$beta[1]/post$beta[2]
     
     gf <- function(g) 
@@ -65,7 +65,7 @@ fstrauss.vb <- function(x, range, nx=25, eps=1e-4, maxiter=100, verb=FALSE){
   cat2("\n")
   post$gamma <- cbind(gamma=gseq, density=post$gamma)
   post$stats <- list(iter=iter, bhist=bhist, ghist=ghist)
-  #' likelihood f(x)
+  # likelihood f(x)
   
   
   post

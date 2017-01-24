@@ -9,102 +9,137 @@ using namespace Rcpp;
 List c_cutgeom(NumericMatrix x, List nlist, double r);
 RcppExport SEXP rstrauss_c_cutgeom(SEXP xSEXP, SEXP nlistSEXP, SEXP rSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP );
-        Rcpp::traits::input_parameter< List >::type nlist(nlistSEXP );
-        Rcpp::traits::input_parameter< double >::type r(rSEXP );
-        List __result = c_cutgeom(x, nlist, r);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< List >::type nlist(nlistSEXP);
+    Rcpp::traits::input_parameter< double >::type r(rSEXP);
+    __result = Rcpp::wrap(c_cutgeom(x, nlist, r));
+    return __result;
 END_RCPP
 }
 // c_geom
 List c_geom(NumericMatrix x, IntegerVector from, IntegerVector to, double r);
 RcppExport SEXP rstrauss_c_geom(SEXP xSEXP, SEXP fromSEXP, SEXP toSEXP, SEXP rSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP );
-        Rcpp::traits::input_parameter< IntegerVector >::type from(fromSEXP );
-        Rcpp::traits::input_parameter< IntegerVector >::type to(toSEXP );
-        Rcpp::traits::input_parameter< double >::type r(rSEXP );
-        List __result = c_geom(x, from, to, r);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type from(fromSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type to(toSEXP);
+    Rcpp::traits::input_parameter< double >::type r(rSEXP);
+    __result = Rcpp::wrap(c_geom(x, from, to, r));
+    return __result;
+END_RCPP
+}
+// rlennardjones_BD
+List rlennardjones_BD(double beta, double sigma, double epsilon, NumericVector win, int toroidal, int iter, int dbg, double blocking);
+RcppExport SEXP rstrauss_rlennardjones_BD(SEXP betaSEXP, SEXP sigmaSEXP, SEXP epsilonSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< double >::type beta(betaSEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type win(winSEXP);
+    Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP);
+    Rcpp::traits::input_parameter< int >::type iter(iterSEXP);
+    Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP);
+    Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP);
+    __result = Rcpp::wrap(rlennardjones_BD(beta, sigma, epsilon, win, toroidal, iter, dbg, blocking));
+    return __result;
+END_RCPP
+}
+// rlennardjones_MH
+List rlennardjones_MH(int n, double sigma, double epsilon, NumericVector win, int toroidal, int iter, int dbg, double blocking, NumericMatrix start);
+RcppExport SEXP rstrauss_rlennardjones_MH(SEXP nSEXP, SEXP sigmaSEXP, SEXP epsilonSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP, SEXP startSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type win(winSEXP);
+    Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP);
+    Rcpp::traits::input_parameter< int >::type iter(iterSEXP);
+    Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP);
+    Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type start(startSEXP);
+    __result = Rcpp::wrap(rlennardjones_MH(n, sigma, epsilon, win, toroidal, iter, dbg, blocking, start));
+    return __result;
 END_RCPP
 }
 // rstrauss_BD
 List rstrauss_BD(double beta, double gamma, double R, NumericVector win, int toroidal, int iter, int dbg, double blocking);
 RcppExport SEXP rstrauss_rstrauss_BD(SEXP betaSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< double >::type beta(betaSEXP );
-        Rcpp::traits::input_parameter< double >::type gamma(gammaSEXP );
-        Rcpp::traits::input_parameter< double >::type R(RSEXP );
-        Rcpp::traits::input_parameter< NumericVector >::type win(winSEXP );
-        Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP );
-        Rcpp::traits::input_parameter< int >::type iter(iterSEXP );
-        Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP );
-        Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP );
-        List __result = rstrauss_BD(beta, gamma, R, win, toroidal, iter, dbg, blocking);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< double >::type beta(betaSEXP);
+    Rcpp::traits::input_parameter< double >::type gamma(gammaSEXP);
+    Rcpp::traits::input_parameter< double >::type R(RSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type win(winSEXP);
+    Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP);
+    Rcpp::traits::input_parameter< int >::type iter(iterSEXP);
+    Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP);
+    Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP);
+    __result = Rcpp::wrap(rstrauss_BD(beta, gamma, R, win, toroidal, iter, dbg, blocking));
+    return __result;
 END_RCPP
 }
 // rstrauss_DCFTP
 List rstrauss_DCFTP(double beta, double gamma, double R, NumericVector win, int toroidal, int T0, int dbg, int maxtry, double blocking);
 RcppExport SEXP rstrauss_rstrauss_DCFTP(SEXP betaSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP T0SEXP, SEXP dbgSEXP, SEXP maxtrySEXP, SEXP blockingSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< double >::type beta(betaSEXP );
-        Rcpp::traits::input_parameter< double >::type gamma(gammaSEXP );
-        Rcpp::traits::input_parameter< double >::type R(RSEXP );
-        Rcpp::traits::input_parameter< NumericVector >::type win(winSEXP );
-        Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP );
-        Rcpp::traits::input_parameter< int >::type T0(T0SEXP );
-        Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP );
-        Rcpp::traits::input_parameter< int >::type maxtry(maxtrySEXP );
-        Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP );
-        List __result = rstrauss_DCFTP(beta, gamma, R, win, toroidal, T0, dbg, maxtry, blocking);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< double >::type beta(betaSEXP);
+    Rcpp::traits::input_parameter< double >::type gamma(gammaSEXP);
+    Rcpp::traits::input_parameter< double >::type R(RSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type win(winSEXP);
+    Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP);
+    Rcpp::traits::input_parameter< int >::type T0(T0SEXP);
+    Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP);
+    Rcpp::traits::input_parameter< int >::type maxtry(maxtrySEXP);
+    Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP);
+    __result = Rcpp::wrap(rstrauss_DCFTP(beta, gamma, R, win, toroidal, T0, dbg, maxtry, blocking));
+    return __result;
 END_RCPP
 }
 // rstrauss_MH
 List rstrauss_MH(int n, double gamma, double R, NumericVector win, int toroidal, int iter, int dbg, double blocking, NumericMatrix start);
 RcppExport SEXP rstrauss_rstrauss_MH(SEXP nSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP, SEXP startSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< int >::type n(nSEXP );
-        Rcpp::traits::input_parameter< double >::type gamma(gammaSEXP );
-        Rcpp::traits::input_parameter< double >::type R(RSEXP );
-        Rcpp::traits::input_parameter< NumericVector >::type win(winSEXP );
-        Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP );
-        Rcpp::traits::input_parameter< int >::type iter(iterSEXP );
-        Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP );
-        Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP );
-        Rcpp::traits::input_parameter< NumericMatrix >::type start(startSEXP );
-        List __result = rstrauss_MH(n, gamma, R, win, toroidal, iter, dbg, blocking, start);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< double >::type gamma(gammaSEXP);
+    Rcpp::traits::input_parameter< double >::type R(RSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type win(winSEXP);
+    Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP);
+    Rcpp::traits::input_parameter< int >::type iter(iterSEXP);
+    Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP);
+    Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type start(startSEXP);
+    __result = Rcpp::wrap(rstrauss_MH(n, gamma, R, win, toroidal, iter, dbg, blocking, start));
+    return __result;
+END_RCPP
+}
+// rstrauss_MH_high_dimension
+List rstrauss_MH_high_dimension(int n, double gamma, double R, NumericVector win, int toroidal, int iter, int dbg, NumericMatrix start);
+RcppExport SEXP rstrauss_rstrauss_MH_high_dimension(SEXP nSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP startSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< double >::type gamma(gammaSEXP);
+    Rcpp::traits::input_parameter< double >::type R(RSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type win(winSEXP);
+    Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP);
+    Rcpp::traits::input_parameter< int >::type iter(iterSEXP);
+    Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type start(startSEXP);
+    __result = Rcpp::wrap(rstrauss_MH_high_dimension(n, gamma, R, win, toroidal, iter, dbg, start));
+    return __result;
 END_RCPP
 }

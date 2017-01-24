@@ -57,6 +57,11 @@ rstrauss <- function(beta=100,
   win <- unlist(bbox)
   if(blocking & perfect) warning("Blocking not implemented for dCFTP.")
   if(blocking & !perfect & missing(n)) warning("Blocking for BD is extremely inefficient.")
+  
+  # high dimension
+  if(d > 3){
+    if(blocking | perfect | missing(n)) stop("dimension > 3 detected. Only fixed n MH simulation available, no blocking.")
+  }
   #
   #
   # choose algorithm
@@ -65,10 +70,12 @@ rstrauss <- function(beta=100,
     if(!is.null(start)) {
       if(!is.matrix(start)) 
         stop("start configuration should be a matrix with same ncol as bbox dimension.")
+      if(ncol(start) != d) stop("start configuration does not agree with bbox dimension.")
     } else{
       start <- apply(bbox, 2, function(ab) runif(n, ab[1], ab[2])  )
     }
-    xyz <- rstrauss_MH(n, gamma, range, win, toroidal, iter, verb, as.numeric(blocking), start)
+    if(d < 4) xyz <- rstrauss_MH(n, gamma, range, win, toroidal, iter, verb, as.numeric(blocking), start)
+    else xyz <- rstrauss_MH_high_dimension(n, gamma, range, win, toroidal, iter, verb, start)
   
   }
   # else we have a non-fixed number of points

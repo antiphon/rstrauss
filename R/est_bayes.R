@@ -32,7 +32,7 @@ fstrauss.bayes <- function(x, R, priors=list(beta=c(1,1e-5), gamma=c(1,1)),
   x <- ( if(is.list(x)) x$x else x )
   dim <- ncol(bbox)
   VR <- R^dim * ( if(dim==3) 3*pi/4 else pi )
-  #' compute statistics, reduced sample border correction
+  # compute statistics, reduced sample border correction
   bbdists <- bbox_distance(x, bbox)
   inside <- which(bbdists > R)
   outside <- which(bbdists < R)
@@ -42,14 +42,14 @@ fstrauss.bayes <- function(x, R, priors=list(beta=c(1,1e-5), gamma=c(1,1)),
   degs_in <- sapply(nlist_in, length)
   degs_2out <- sapply(nlist_2out, length)
   tv <- cbind(N, sum(degs_in)/2 + sum(degs_2out))
-  #'
+  #
   initial_values <- if(missing(init)){
     lambda <-  N/V
     g0 <-  tv[2]/(N*(N-1)*VR/(2*V))
     G <-  (1 - g0) * VR
     c(exp(lambda*G)*lambda, g0)
   } else init
-  #' optim function, includes priors
+  # optim function, includes priors
   fun <- function(theta) {
     lz <- approximate_strauss_constant(theta[1], theta[2], R, bbox_dil, ...)
     lt <- log(theta)
@@ -59,9 +59,9 @@ fstrauss.bayes <- function(x, R, priors=list(beta=c(1,1e-5), gamma=c(1,1)),
     v<-lz - tv%*%log(theta) - lpri # to maximize must be inverted
     if(is.finite(v)) v else 1e9
   }
-  #'
+  #
   res <- optim(c(N/V, 0.5), fun, lower=lower, upper=upper,  method="L-BFGS-B")
-  #'
+  #
   coef  <- c(res$par, R)
   names(coef) <- c("beta", "gamma", "r_given")
   

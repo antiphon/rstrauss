@@ -63,6 +63,22 @@ double potential(Pp X, double gamma, double R, int i) {
   return pow(gamma, S);
 }
 
+double potential_lj(Pp X, double sigma, double epsilon, int i) {
+  int j;
+  double S=0,  dij;
+  
+  //return pow(gamma, X.Rneighbours(i, R));
+  
+  for(j=0; j < X.size(); j++) {
+    if(j != i) {
+      dij =sigma / X.getDist(&i, &j);
+      dij = pow(dij, 6);
+      S += ( pow(dij, 2) - dij   );
+    }
+  }
+  return exp(-4.0*epsilon*S);
+}
+
 double potential(Pplite X, std::vector<int> these, double gamma, double R, int i) {
   int j, k;
   double S=0, dij;
@@ -76,5 +92,15 @@ double potential(Pplite X, std::vector<int> these, double gamma, double R, int i
   
   return pow(gamma, S);
 }
+ 
+ 
+double potential(Pplited X, double gamma, double R, int i) {
+  return pow(gamma, X.Rneighbours(i,R));
+}
+
+
+
+
+
 
 

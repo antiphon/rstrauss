@@ -12,28 +12,28 @@ fstrauss.logistic <- function(x, R, rho, ...) {
   N <- nrow(x)
   dim <- ncol(bbox)
   V <- prod(apply(bbox, 2, diff))
-  #' dummy intensity
+  # dummy intensity
   if(missing(rho)) rho <- 4*N/V
-  #'
+  #
   K <- rpois(1, rho*V)
   dummies <- apply(bbox, 2, function(ra) runif(K, ra[1], ra[2]))
   colnames(dummies) <- colnames(x)
-  #'
-  #' compute statistics
+  #
+  # compute statistics
   loc <- rbind(x, dummies)
   nlist <- geom(loc, to=1:N, r=R)
   z <- rep(1:0, c(N, K))
-  #'
+  #
   degs <- sapply(nlist, length)
   X <- cbind(degs) # intercept automatically
-  #'
+  #
   bdry <- bbox_distance(loc, bbox) > R
-  #' offset
+  # offset
   H <- rep(log(1/rho), K+N)
-  #' fit
+  # fit
   fit <- glm(z~X, family="binomial", offset=H, subset=bdry)
-  #'
-  #'that's it
+  #
+  # that's it
   coef  <- c(exp(fit$coef), R)
   names(coef) <- c("beta", "gamma", "r_given")
   list(theta=coef, fit=fit, logLik=logLik(fit))

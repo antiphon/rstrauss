@@ -20,15 +20,15 @@
 approximate_strauss_constant_R3 <- function(beta, gamma, range, bbox, n, ...){
   V <- prod(apply(bbox, 2, diff))
   dim <- ncol(bbox)
-  #' dimension dependent
+  # dimension dependent
   Cr <- pi * ifelse(dim==2, range^2, 4*range^3/3)
   c0 <- ifelse(dim==2, pi * (4*pi-3*sqrt(3))/4, 5*pi^3/6) 
-  #' constant
+  # constant
   a1 <- log(V)
   a2 <- (gamma-1) * Cr/(2*V)
   a3 <- c0 * (gamma-1)^3 * range^(dim*2)/(6*V^2)
-  #'
-  #' for a free n:
+  #
+  # for a free n:
   if(missing(n)){
     k <- V*beta
     kk <- 1/(1/k - 2*a2)

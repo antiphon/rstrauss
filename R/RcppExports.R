@@ -9,6 +9,14 @@ c_geom <- function(x, from, to, r) {
     .Call('rstrauss_c_geom', PACKAGE = 'rstrauss', x, from, to, r)
 }
 
+rlennardjones_BD <- function(beta, sigma, epsilon, win, toroidal, iter, dbg, blocking) {
+    .Call('rstrauss_rlennardjones_BD', PACKAGE = 'rstrauss', beta, sigma, epsilon, win, toroidal, iter, dbg, blocking)
+}
+
+rlennardjones_MH <- function(n, sigma, epsilon, win, toroidal, iter, dbg, blocking, start) {
+    .Call('rstrauss_rlennardjones_MH', PACKAGE = 'rstrauss', n, sigma, epsilon, win, toroidal, iter, dbg, blocking, start)
+}
+
 rstrauss_BD <- function(beta, gamma, R, win, toroidal, iter, dbg, blocking) {
     .Call('rstrauss_rstrauss_BD', PACKAGE = 'rstrauss', beta, gamma, R, win, toroidal, iter, dbg, blocking)
 }
@@ -19,5 +27,9 @@ rstrauss_DCFTP <- function(beta, gamma, R, win, toroidal, T0, dbg, maxtry, block
 
 rstrauss_MH <- function(n, gamma, R, win, toroidal, iter, dbg, blocking, start) {
     .Call('rstrauss_rstrauss_MH', PACKAGE = 'rstrauss', n, gamma, R, win, toroidal, iter, dbg, blocking, start)
+}
+
+rstrauss_MH_high_dimension <- function(n, gamma, R, win, toroidal, iter, dbg, start) {
+    .Call('rstrauss_rstrauss_MH_high_dimension', PACKAGE = 'rstrauss', n, gamma, R, win, toroidal, iter, dbg, start)
 }
 

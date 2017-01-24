@@ -19,9 +19,9 @@ dstrauss <- function(x, beta, gamma, range, method="OT", ...) {
   pairs <- sum( sapply(geom(x$x, r=range), length)  )/2
   winV <- prod(apply(x$bbox, 2, diff))
   dim <- ncol(x$bbox)
-  #' the constant:
+  # the constant:
   lZ <- approximate_strauss_constant(beta, gamma, range, bbox=x$bbox, method=method, ...)
-  #'
+  #
   nrow(x$x)*log(beta)+pairs*log(gamma) - lZ
 }
 
