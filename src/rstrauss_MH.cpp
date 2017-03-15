@@ -111,13 +111,13 @@ List rstrauss_MH_high_dimension(int n, double gamma, double R, NumericVector win
   Pplited X(window, toroidal); 
   
   double xnew[dim];
-  Rprintf("retrieving\n");
+  //Rprintf("retrieving\n");
   // retreive starting
   for(i=0; i < n; i++){
     for(l=0; l < dim; l++) xnew[l] = start(i,l);
     int new_id = X.push_back(xnew);
   }
-  Rprintf("looping\n");
+  //Rprintf("looping\n");
   // then we loop
   int acc = 0;
   double E_old, E_new;
