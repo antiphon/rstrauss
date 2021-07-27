@@ -30,9 +30,9 @@ List rstrauss_MH(int n, double gamma, double R, NumericVector win,
 //  if(start_is_empty){ 
 //    printf("Got null start.");
 //    for(i=0; i < n; i++){
-//      xnew = runif(1, win[0], win[1])(0) ;
-//      ynew = runif(1, win[2], win[3])(0) ;
-//      if(dim==3)  znew = runif(1, win[4], win[5])(0) ;
+//      xnew = R::runif(win[0], win[1]) ;
+//      ynew = R::runif(win[2], win[3]) ;
+//      if(dim==3)  znew = R::runif(win[4], win[5]) ;
 //      int new_id = X.push_back(xnew, ynew, znew);
 //    }
 //  }
@@ -56,12 +56,12 @@ List rstrauss_MH(int n, double gamma, double R, NumericVector win,
 //    printf("potential\n");
     E_old = potential(X, gamma, R, j);
     
-    xnew = runif(1, win[0], win[1])(0);
-    ynew = runif(1, win[2], win[3])(0);
+    xnew = R::runif(win[0], win[1]);
+    ynew = R::runif(win[2], win[3]);
     xold = X.getX(&j);
     yold = X.getY(&j);
     if(dim==3) {
-      znew = runif(1, win[4], win[5])(0);
+      znew = R::runif(win[4], win[5]);
       zold = X.getZ(&j);
     }
 //    printf("moving\n");
@@ -71,7 +71,7 @@ List rstrauss_MH(int n, double gamma, double R, NumericVector win,
     if(E_old == 0 & E_new > 0) {alpha = 1;}
     else if(E_new == 0) { alpha = 0;}
     else {alpha = E_new/E_old; }
-    if(runif(1)(0) < alpha) {
+    if(R::runif(0,1) < alpha) {
       acc += 1;
     }
     else {
@@ -129,7 +129,7 @@ List rstrauss_MH_high_dimension(int n, double gamma, double R, NumericVector win
     //    printf("potential\n");
     E_old = potential(X, gamma, R, j);
     for(l=0; l < dim; l++) {
-      xnew[l] = runif(1, win[2*l], win[2*l+1])(0);
+      xnew[l] = R::runif(win[2*l], win[2*l+1]);
       xold[l] = X.getCoord(&j, &l);
     }
     //    printf("moving\n");
@@ -139,7 +139,7 @@ List rstrauss_MH_high_dimension(int n, double gamma, double R, NumericVector win
     if(E_old == 0 & E_new > 0) {alpha = 1;}
     else if(E_new == 0) { alpha = 0;}
     else {alpha = E_new/E_old; }
-    if(runif(1)(0) < alpha) {
+    if(R::runif(0,1) < alpha) {
       acc += 1;
     }
     else {

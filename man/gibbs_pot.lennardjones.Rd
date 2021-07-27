@@ -11,4 +11,3 @@ rescale
 first
 coefficient transformation
 }
-

@@ -9,4 +9,3 @@ marginal_likelihood(stats, R, bbox, priors, mciter = 1000)
 \description{
 Compute the marginal likelihood for Bayesian Strauss inference
 }
-

@@ -4,8 +4,15 @@
 \alias{fstrauss.bayes}
 \title{Bayesian inference for stationary Strauss process}
 \usage{
-fstrauss.bayes(x, R, priors = list(beta = c(1, 1e-05), gamma = c(1, 1)),
-  lower = c(1e-09, 1e-09), upper = c(Inf, 1), init, ...)
+fstrauss.bayes(
+  x,
+  R,
+  priors = list(beta = c(1, 1e-05), gamma = c(1, 1)),
+  lower = c(1e-09, 1e-09),
+  upper = c(Inf, 1),
+  init,
+  ...
+)
 }
 \arguments{
 \item{x}{a list with elements $x:data.frame of locations (ncol 2 or 3), $bbox: matrix with columns giving window bounds}
@@ -34,4 +41,3 @@ See \link{approximate_strauss_constant} for approximation options.}
 \description{
 Using direct approximation of the normalizing constant.
 }
-

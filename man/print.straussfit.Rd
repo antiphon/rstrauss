@@ -9,4 +9,3 @@
 \description{
 Fit result object
 }
-

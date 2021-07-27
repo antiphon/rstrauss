@@ -16,4 +16,3 @@ fstrauss.logistic(x, R, rho, ...)
 \description{
 Fit Strauss process to data using Logistic likelihood method
 }
-

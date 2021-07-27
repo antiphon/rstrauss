@@ -4,9 +4,20 @@
 \alias{rstrauss}
 \title{Simulate Strauss process in 2- or 3-dimensional box}
 \usage{
-rstrauss(beta = 100, gamma = 1, range = 0.1, n, bbox = cbind(c(0, 1),
-  c(0, 1), c(0, 1)), iter = 10000, toroidal = FALSE, verb = FALSE,
-  perfect = FALSE, blocking = FALSE, start = NULL, CFTP_T0 = 2)
+rstrauss(
+  beta = 100,
+  gamma = 1,
+  range = 0.1,
+  n,
+  bbox = cbind(c(0, 1), c(0, 1), c(0, 1)),
+  iter = 10000,
+  toroidal = FALSE,
+  verb = FALSE,
+  perfect = FALSE,
+  blocking = FALSE,
+  start = NULL,
+  CFTP_T0 = 2
+)
 }
 \arguments{
 \item{beta}{The beta parameter, controls (but does not equal) intensity}
@@ -61,4 +72,3 @@ x2 <- rstrauss(beta=10, gamma=0.01, range=0.1, iter=1e5, bbox=bbox2d)
 x2p <- rstrauss(beta=10, gamma=0.01, range=0.1, perfect=TRUE, bbox=bbox2d, verb=T)
 x3 <- rstrauss(beta=100, gamma=0.2, range=0.2, perfect=TRUE, bbox=bbox3d, iter=5e4)
 }
-

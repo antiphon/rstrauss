@@ -4,10 +4,16 @@
 \alias{approximate_strauss_constant_penttinen}
 \title{approximate Strauss constant using Penttinen84 approx.}
 \usage{
-approximate_strauss_constant_penttinen(beta, gamma, range, bbox, Nmax = 10000,
-  n, ...)
+approximate_strauss_constant_penttinen(
+  beta,
+  gamma,
+  range,
+  bbox,
+  Nmax = 10000,
+  n,
+  ...
+)
 }
 \description{
 approximate Strauss constant using Penttinen84 approx.
 }
-

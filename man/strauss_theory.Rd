@@ -10,4 +10,3 @@ strauss_theory(intensity, dim = 3)
 Given the number of points (intensity) and the gamma=0, what is the 
 theoretical upper limit for range?
 }
-

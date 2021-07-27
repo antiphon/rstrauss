@@ -28,4 +28,3 @@ Conditional and unconditional approximation of normalizing constant
 of the stationary homogeneous Strauss model.
 Third order approximation, as Penttinen is second order.
 }
-

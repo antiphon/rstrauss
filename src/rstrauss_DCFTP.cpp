@@ -41,10 +41,10 @@ List rstrauss_DCFTP(double beta, double gamma, double R,
   int nD = rpois(1, beta*Volume)(0);
   
   for(i=0; i < nD; i++) {
-    xnew = runif(1, win[0], win[1])(0);
-    ynew = runif(1, win[2], win[3])(0);
+    xnew = R::runif(win[0], win[1]);
+    ynew = R::runif(win[2], win[3]);
     if(dim==3) {
-      znew = runif(1, win[4], win[5])(0);
+      znew = R::runif(win[4], win[5]);
       xyz.push_back(xnew, ynew, znew);
     }
     else xyz.push_back(xnew, ynew);
@@ -63,18 +63,18 @@ List rstrauss_DCFTP(double beta, double gamma, double R,
     for(i=which_id.size(); i < time; i++ ) {
       // birth or death
       pdeath = 1 - beta/(beta + D.size());
-      if(runif(1)(0) <  pdeath){ // Dominating process backwards death
+      if(R::runif(0,1) <  pdeath){ // Dominating process backwards death
         j = sample_j(D.size());
         which_id.push_back(D.at(j));
         D.erase(D.begin()+j);
-        M.push_back(runif(1)(0));
+        M.push_back(R::runif(0,1));
         it_was_death.push_back(true);
       }
       else { // Dominating process backwards birth
-        xnew = runif(1, win[0], win[1])(0);
-        ynew = runif(1, win[2], win[3])(0);
+        xnew = R::runif(win[0], win[1]);
+        ynew = R::runif(win[2], win[3]);
         if(dim==3) {
-          znew=runif(1, win[4], win[5])(0);
+          znew=R::runif(win[4], win[5]);
           xyz.push_back(xnew, ynew, znew);
         }
         else xyz.push_back(xnew, ynew);

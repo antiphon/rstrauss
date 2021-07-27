@@ -25,4 +25,3 @@ if stucki=FALSE, use Poisson mgf approximation,
 else return the limits given in Stucki 2012 paper, which are 
 accurate but bounds. The average is quite good.
 }
-

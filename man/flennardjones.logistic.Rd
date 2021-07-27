@@ -20,4 +20,3 @@ flennardjones.logistic(x, sigma0, rho, border_r, ...)
 \description{
 supports also 3D.
 }
-

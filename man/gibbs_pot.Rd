@@ -9,4 +9,3 @@ gibbs_pot(x, par, model, ...)
 \description{
 Computes the sufficient statistics for exp-Gibbs models
 }
-

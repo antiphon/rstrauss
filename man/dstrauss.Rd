@@ -26,4 +26,3 @@ The value is in logarithm scale}
 \description{
 Now only for cuboidal window
 }
-

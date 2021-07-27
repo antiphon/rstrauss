@@ -28,9 +28,9 @@ List rstrauss_BD_delta(double beta, double gamma, double delta,
   
   if(blocking > 0) X.start_blocking(blocking);
   
-  xnew = runif(1, win[0], win[1])(0) ;
-  ynew = runif(1, win[2], win[3])(0) ;
-  if(dim==3)  znew = runif(1, win[4], win[5])(0) ;
+  xnew = R::runif(win[0], win[1]) ;
+  ynew = R::runif(win[2], win[3]) ;
+  if(dim==3)  znew = R::runif(win[4], win[5]) ;
   
   int new_id = X.push_back(xnew, ynew, znew);
   
@@ -45,30 +45,30 @@ List rstrauss_BD_delta(double beta, double gamma, double delta,
     pen = n > 1 ? n*(n-2) : 0;
     pen = exp(delta*pen);
     // birth or death
-    if(runif(1)(0) < pdeath) { // death?
+    if(R::runif(0,1) < pdeath) { // death?
 //      printf("killing\n");
       j = sample_j(n);
       //
       Delta =  potential(X, gamma, R, j)/pen;
       alpha = (n/Volume)/beta / Delta;
-      if(runif(1)(0) < alpha) { // death occurs
+      if(R::runif(0,1) < alpha) { // death occurs
 //        printf("killed\n");
         X.remove(&j);
       }
     }
     else{ // birth, oh joy
 //      printf("not killing\n");
-      xnew = runif(1, win[0], win[1])(0);
-      ynew = runif(1, win[2], win[3])(0);
+      xnew = R::runif(win[0], win[1]);
+      ynew = R::runif(win[2], win[3]);
       if(dim==3) {
-        znew = runif(1, win[4], win[5])(0);
+        znew = R::runif(win[4], win[5]);
         new_id = X.push_back(xnew, ynew, znew);
       }
       else new_id = X.push_back(xnew, ynew);
       j = n;
       Delta = pen * potential(X, gamma, R, j);
       alpha = (Volume/(n+1.0)) * beta * Delta;
-      if(runif(1)(0) < alpha) { //occurs
+      if(R::runif(0,1) < alpha) { //occurs
 //        printf("born\n");
       }
       else {

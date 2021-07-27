@@ -4,8 +4,17 @@
 \alias{approximate_strauss_constant_PS}
 \title{approximate Strauss constant using Path sampling}
 \usage{
-approximate_strauss_constant_PS(beta, gamma, range, bbox, nsim = 10,
-  steps = 10, perfMaxIter = 1e+05, MHiter = 1000, ...)
+approximate_strauss_constant_PS(
+  beta,
+  gamma,
+  range,
+  bbox,
+  nsim = 10,
+  steps = 10,
+  perfMaxIter = 1e+05,
+  MHiter = 1000,
+  ...
+)
 }
 \arguments{
 \item{nsim}{number of sims for MC expectation}
@@ -24,4 +33,3 @@ Value is the natural log of Z(theta), unconditional.
 \description{
 The unconditonal constant, so you can't give n for this.
 }
-

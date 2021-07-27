@@ -9,4 +9,3 @@ bbox_cut(x, bbox, ind = FALSE)
 \description{
 Cut coordinates with a bbox
 }
-

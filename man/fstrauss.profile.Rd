@@ -14,4 +14,3 @@ fstrauss.profile(R, ..., verb = FALSE)
 \description{
 Compute the likelihood profile for vector of interaction ranges. (basically a for-loop)
 }
-

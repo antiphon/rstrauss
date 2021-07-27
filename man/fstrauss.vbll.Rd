@@ -10,4 +10,3 @@ fstrauss.vbll(x, R, rho, eps = 1e-04, maxiter = 100, verb = FALSE, ...)
 Using Jaakkola&Jordan 1996 quadratic variational approach to the Baddeley et al 2014 
 logistic likelihood approximation of the point pattern likelihood.
 }
-

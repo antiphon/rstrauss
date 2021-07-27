@@ -16,4 +16,3 @@ cutgeom(x, nlist, r)
 \description{
 Basic idea: Given a set of point locations, and some graph on them, cut edges from list-of-vectors longer than range r.
 }
-

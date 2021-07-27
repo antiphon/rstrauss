@@ -27,4 +27,3 @@ See \link{approximate_strauss_constant} for approximation options.}
 ML estimate of beta and gamma using optimization of log-likelihood,
 where the normalizing constant is approximated directly.
 }
-

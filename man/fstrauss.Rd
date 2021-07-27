@@ -33,4 +33,3 @@ Three approximation methods are available:
 \description{
 NOTE: This is an early version.
 }
-

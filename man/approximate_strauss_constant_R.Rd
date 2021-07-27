@@ -14,4 +14,3 @@ instead of numerical integration.
 \details{
 See \link{approximate_strauss_constant_penttinen} .
 }
-

@@ -47,4 +47,3 @@ for(m in c("P", "PS", "R3")) print(approximate_strauss_constant(beta, gamma, R, 
 
 approximate_strauss_constant(beta, gamma, R, bbox, n=100)
 }
-

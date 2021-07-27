@@ -9,4 +9,3 @@ bbox_erode(bbox, r = 0.1)
 \description{
 Erode a 3d box
 }
-

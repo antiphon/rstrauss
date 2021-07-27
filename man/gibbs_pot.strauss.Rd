@@ -9,4 +9,3 @@ gibbs_pot.strauss(x, par, ...)
 \description{
 strauss
 }
-

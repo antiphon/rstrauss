@@ -54,7 +54,7 @@ rstrauss <- function(beta=100,
                      start=NULL,
                      CFTP_T0=2) {
   d <- ncol(bbox)
-  win <- unlist(bbox)
+  win <- as.numeric( unlist(bbox) ) 
   if(blocking & perfect) warning("Blocking not implemented for dCFTP.")
   if(blocking & !perfect & missing(n)) warning("Blocking for BD is extremely inefficient.")
   
@@ -76,7 +76,6 @@ rstrauss <- function(beta=100,
     }
     if(d < 4) xyz <- rstrauss_MH(n, gamma, range, win, toroidal, iter, verb, as.numeric(blocking), start)
     else xyz <- rstrauss_MH_high_dimension(n, gamma, range, win, toroidal, iter, verb, start)
-  
   }
   # else we have a non-fixed number of points
   else if(perfect) 

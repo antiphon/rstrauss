@@ -9,4 +9,3 @@ LambertW(x)
 \description{
 shamelessly copied from spatstat.
 }
-

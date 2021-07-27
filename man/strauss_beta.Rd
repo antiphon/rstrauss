@@ -28,4 +28,3 @@ else use the function 'take' (default mean) on the bounds given by Stucki 2012.
 'take' could be mean, max or min, for example.
 see \link{strauss_intensity}
 }
-

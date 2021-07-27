@@ -9,4 +9,3 @@ fstrauss.vb(x, range, nx = 25, eps = 1e-04, maxiter = 100, verb = FALSE)
 \description{
 Not yet implemented properly.
 }
-

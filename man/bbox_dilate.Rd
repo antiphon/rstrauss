@@ -14,4 +14,3 @@ bbox_dilate(bbox, r)
 \description{
 dilate bbox
 }
-
