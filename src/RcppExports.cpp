@@ -5,9 +5,14 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // c_cutgeom
 List c_cutgeom(NumericMatrix x, List nlist, double r);
-RcppExport SEXP rstrauss_c_cutgeom(SEXP xSEXP, SEXP nlistSEXP, SEXP rSEXP) {
+RcppExport SEXP _rstrauss_c_cutgeom(SEXP xSEXP, SEXP nlistSEXP, SEXP rSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,7 +25,7 @@ END_RCPP
 }
 // c_geom
 List c_geom(NumericMatrix x, IntegerVector from, IntegerVector to, double r);
-RcppExport SEXP rstrauss_c_geom(SEXP xSEXP, SEXP fromSEXP, SEXP toSEXP, SEXP rSEXP) {
+RcppExport SEXP _rstrauss_c_geom(SEXP xSEXP, SEXP fromSEXP, SEXP toSEXP, SEXP rSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -34,7 +39,7 @@ END_RCPP
 }
 // rlennardjones_BD
 List rlennardjones_BD(double beta, double sigma, double epsilon, NumericVector win, int toroidal, int iter, int dbg, double blocking);
-RcppExport SEXP rstrauss_rlennardjones_BD(SEXP betaSEXP, SEXP sigmaSEXP, SEXP epsilonSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP) {
+RcppExport SEXP _rstrauss_rlennardjones_BD(SEXP betaSEXP, SEXP sigmaSEXP, SEXP epsilonSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -52,7 +57,7 @@ END_RCPP
 }
 // rlennardjones_MH
 List rlennardjones_MH(int n, double sigma, double epsilon, NumericVector win, int toroidal, int iter, int dbg, double blocking, NumericMatrix start);
-RcppExport SEXP rstrauss_rlennardjones_MH(SEXP nSEXP, SEXP sigmaSEXP, SEXP epsilonSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP, SEXP startSEXP) {
+RcppExport SEXP _rstrauss_rlennardjones_MH(SEXP nSEXP, SEXP sigmaSEXP, SEXP epsilonSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP, SEXP startSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -71,7 +76,7 @@ END_RCPP
 }
 // rstrauss_BD
 List rstrauss_BD(double beta, double gamma, double R, NumericVector win, int toroidal, int iter, int dbg, double blocking);
-RcppExport SEXP rstrauss_rstrauss_BD(SEXP betaSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP) {
+RcppExport SEXP _rstrauss_rstrauss_BD(SEXP betaSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -87,9 +92,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rstrauss_BD_delta
+List rstrauss_BD_delta(double beta, double gamma, double delta, double R, NumericVector win, int toroidal, int iter, int dbg, double blocking);
+RcppExport SEXP _rstrauss_rstrauss_BD_delta(SEXP betaSEXP, SEXP gammaSEXP, SEXP deltaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type beta(betaSEXP);
+    Rcpp::traits::input_parameter< double >::type gamma(gammaSEXP);
+    Rcpp::traits::input_parameter< double >::type delta(deltaSEXP);
+    Rcpp::traits::input_parameter< double >::type R(RSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type win(winSEXP);
+    Rcpp::traits::input_parameter< int >::type toroidal(toroidalSEXP);
+    Rcpp::traits::input_parameter< int >::type iter(iterSEXP);
+    Rcpp::traits::input_parameter< int >::type dbg(dbgSEXP);
+    Rcpp::traits::input_parameter< double >::type blocking(blockingSEXP);
+    rcpp_result_gen = Rcpp::wrap(rstrauss_BD_delta(beta, gamma, delta, R, win, toroidal, iter, dbg, blocking));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rstrauss_DCFTP
 List rstrauss_DCFTP(double beta, double gamma, double R, NumericVector win, int toroidal, int T0, int dbg, int maxtry, double blocking);
-RcppExport SEXP rstrauss_rstrauss_DCFTP(SEXP betaSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP T0SEXP, SEXP dbgSEXP, SEXP maxtrySEXP, SEXP blockingSEXP) {
+RcppExport SEXP _rstrauss_rstrauss_DCFTP(SEXP betaSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP T0SEXP, SEXP dbgSEXP, SEXP maxtrySEXP, SEXP blockingSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -108,7 +132,7 @@ END_RCPP
 }
 // rstrauss_MH
 List rstrauss_MH(int n, double gamma, double R, NumericVector win, int toroidal, int iter, int dbg, double blocking, NumericMatrix start);
-RcppExport SEXP rstrauss_rstrauss_MH(SEXP nSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP, SEXP startSEXP) {
+RcppExport SEXP _rstrauss_rstrauss_MH(SEXP nSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP blockingSEXP, SEXP startSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -127,7 +151,7 @@ END_RCPP
 }
 // rstrauss_MH_high_dimension
 List rstrauss_MH_high_dimension(int n, double gamma, double R, NumericVector win, int toroidal, int iter, int dbg, NumericMatrix start);
-RcppExport SEXP rstrauss_rstrauss_MH_high_dimension(SEXP nSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP startSEXP) {
+RcppExport SEXP _rstrauss_rstrauss_MH_high_dimension(SEXP nSEXP, SEXP gammaSEXP, SEXP RSEXP, SEXP winSEXP, SEXP toroidalSEXP, SEXP iterSEXP, SEXP dbgSEXP, SEXP startSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -142,4 +166,22 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(rstrauss_MH_high_dimension(n, gamma, R, win, toroidal, iter, dbg, start));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_rstrauss_c_cutgeom", (DL_FUNC) &_rstrauss_c_cutgeom, 3},
+    {"_rstrauss_c_geom", (DL_FUNC) &_rstrauss_c_geom, 4},
+    {"_rstrauss_rlennardjones_BD", (DL_FUNC) &_rstrauss_rlennardjones_BD, 8},
+    {"_rstrauss_rlennardjones_MH", (DL_FUNC) &_rstrauss_rlennardjones_MH, 9},
+    {"_rstrauss_rstrauss_BD", (DL_FUNC) &_rstrauss_rstrauss_BD, 8},
+    {"_rstrauss_rstrauss_BD_delta", (DL_FUNC) &_rstrauss_rstrauss_BD_delta, 9},
+    {"_rstrauss_rstrauss_DCFTP", (DL_FUNC) &_rstrauss_rstrauss_DCFTP, 9},
+    {"_rstrauss_rstrauss_MH", (DL_FUNC) &_rstrauss_rstrauss_MH, 9},
+    {"_rstrauss_rstrauss_MH_high_dimension", (DL_FUNC) &_rstrauss_rstrauss_MH_high_dimension, 8},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_rstrauss(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

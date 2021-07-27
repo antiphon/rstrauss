@@ -2,34 +2,38 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 c_cutgeom <- function(x, nlist, r) {
-    .Call('rstrauss_c_cutgeom', PACKAGE = 'rstrauss', x, nlist, r)
+    .Call('_rstrauss_c_cutgeom', PACKAGE = 'rstrauss', x, nlist, r)
 }
 
 c_geom <- function(x, from, to, r) {
-    .Call('rstrauss_c_geom', PACKAGE = 'rstrauss', x, from, to, r)
+    .Call('_rstrauss_c_geom', PACKAGE = 'rstrauss', x, from, to, r)
 }
 
 rlennardjones_BD <- function(beta, sigma, epsilon, win, toroidal, iter, dbg, blocking) {
-    .Call('rstrauss_rlennardjones_BD', PACKAGE = 'rstrauss', beta, sigma, epsilon, win, toroidal, iter, dbg, blocking)
+    .Call('_rstrauss_rlennardjones_BD', PACKAGE = 'rstrauss', beta, sigma, epsilon, win, toroidal, iter, dbg, blocking)
 }
 
 rlennardjones_MH <- function(n, sigma, epsilon, win, toroidal, iter, dbg, blocking, start) {
-    .Call('rstrauss_rlennardjones_MH', PACKAGE = 'rstrauss', n, sigma, epsilon, win, toroidal, iter, dbg, blocking, start)
+    .Call('_rstrauss_rlennardjones_MH', PACKAGE = 'rstrauss', n, sigma, epsilon, win, toroidal, iter, dbg, blocking, start)
 }
 
 rstrauss_BD <- function(beta, gamma, R, win, toroidal, iter, dbg, blocking) {
-    .Call('rstrauss_rstrauss_BD', PACKAGE = 'rstrauss', beta, gamma, R, win, toroidal, iter, dbg, blocking)
+    .Call('_rstrauss_rstrauss_BD', PACKAGE = 'rstrauss', beta, gamma, R, win, toroidal, iter, dbg, blocking)
+}
+
+rstrauss_BD_delta <- function(beta, gamma, delta, R, win, toroidal, iter, dbg, blocking) {
+    .Call('_rstrauss_rstrauss_BD_delta', PACKAGE = 'rstrauss', beta, gamma, delta, R, win, toroidal, iter, dbg, blocking)
 }
 
 rstrauss_DCFTP <- function(beta, gamma, R, win, toroidal, T0, dbg, maxtry, blocking) {
-    .Call('rstrauss_rstrauss_DCFTP', PACKAGE = 'rstrauss', beta, gamma, R, win, toroidal, T0, dbg, maxtry, blocking)
+    .Call('_rstrauss_rstrauss_DCFTP', PACKAGE = 'rstrauss', beta, gamma, R, win, toroidal, T0, dbg, maxtry, blocking)
 }
 
 rstrauss_MH <- function(n, gamma, R, win, toroidal, iter, dbg, blocking, start) {
-    .Call('rstrauss_rstrauss_MH', PACKAGE = 'rstrauss', n, gamma, R, win, toroidal, iter, dbg, blocking, start)
+    .Call('_rstrauss_rstrauss_MH', PACKAGE = 'rstrauss', n, gamma, R, win, toroidal, iter, dbg, blocking, start)
 }
 
 rstrauss_MH_high_dimension <- function(n, gamma, R, win, toroidal, iter, dbg, start) {
-    .Call('rstrauss_rstrauss_MH_high_dimension', PACKAGE = 'rstrauss', n, gamma, R, win, toroidal, iter, dbg, start)
+    .Call('_rstrauss_rstrauss_MH_high_dimension', PACKAGE = 'rstrauss', n, gamma, R, win, toroidal, iter, dbg, start)
 }
 
