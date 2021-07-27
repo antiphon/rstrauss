@@ -28,7 +28,7 @@ List rstrauss_BD(double beta, double gamma, double R, NumericVector win,
   
   if(blocking > 0) X.start_blocking(blocking);
   
-  Rprintf("%f %f, %f %f\n", win(0), win(1), win(2), win(3));
+  //Rprintf("%f %f, %f %f\n", win(0), win(1), win(2), win(3));
   
   xnew = R::runif(win(0), win(1));
   ynew = R::runif(win(2), win(3));
