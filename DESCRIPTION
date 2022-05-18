@@ -1,8 +1,8 @@
 Package: rstrauss
 Type: Package
 Title: Simulates Strauss point process, in 2D and 3D
-Version: 1.2-1
-Date: 2021-07-27
+Version: 1.3-0
+Date: 2022-05-18
 Author: Tuomas Rajala
 Maintainer: Tuomas Rajala <tuomas.rajala@iki.fi>
 Description: Simulate the Strauss point process in 2- or 3-dimensional cube
@@ -12,4 +12,4 @@ License: GPL
 Depends:
     Rcpp
 LinkingTo: Rcpp
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2

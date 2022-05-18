@@ -4,7 +4,7 @@
 \alias{print.straussfit}
 \title{Fit result object}
 \usage{
-\method{print}{straussfit}(x, ...)
+print.straussfit(x, ...)
 }
 \description{
 Fit result object
