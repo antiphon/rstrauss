@@ -36,7 +36,12 @@ fstrauss.logistic <- function(x, R, rho, ...) {
   # that's it
   coef  <- c(exp(fit$coef), R)
   names(coef) <- c("beta", "gamma", "r_given")
-  list(theta=coef, fit=fit, logLik=logLik(fit))
+  # Use the same formula as spatstat
+  lll <- logLik(fit) |> unlist()
+  al <- sum( bdry * z * log(rho))
+  ll <- lll + al
+  #
+  list(theta=coef, fit=fit, logLik=ll)
 }
 
 

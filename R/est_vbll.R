@@ -7,6 +7,7 @@
 
 fstrauss.vbll <- function(x, R, rho, eps=1e-4, maxiter=100, verb=FALSE, ...){
   #stop("VB-LL not yet ready.")
+  warning("No edge correction available.")
   #
   dbb <- apply(x$bbox, 2, diff)
   V <- prod(dbb)
@@ -33,6 +34,13 @@ fstrauss.vbll <- function(x, R, rho, eps=1e-4, maxiter=100, verb=FALSE, ...){
   fit <- vblogit(y=y, X=X, offset=offset, verb=verb, ...)
   coef  <- c(exp(unname(fit$m[,1])), R)
   names(coef) <- c("beta", "gamma", "r_given")
-  list(theta=coef, fit=fit, logLik=fit$logLik)
+  
+  # Use the same formula as spatstat
+  lll <- fit$logLik
+  al <- sum( y * log(rho))
+  ll <- lll + al
+  #
+  #
+  list(theta=coef, fit=fit, logLik=ll)
 }
 

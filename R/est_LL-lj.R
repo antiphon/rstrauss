@@ -55,8 +55,15 @@ flennardjones.logistic <- function(x, sigma0, rho, border_r, ...) {
   beta <- exp(co[1])
   theta <- c(beta, (co[2]/co[3])^(1/6)*sigma0,
              co[3]^2/(4*co[2]))
+  
   names(theta) <- c("beta", "sigma", "epsilon")
-  list(theta=theta, fit=fit, logLik=logLik(fit))
+  
+  # Use the same formula as spatstat
+  lll <- logLik(fit) |> unlist()
+  al <- sum( bdry * z * log(rho))
+  ll <- lll + al
+  #
+  list(theta=coef, fit=fit, logLik=ll)
 }
 
 
