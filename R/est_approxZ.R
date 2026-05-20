@@ -16,24 +16,37 @@
 #' 
 #' @export
 
-fstrauss.direct <- function(x, R, lower=c(1e-9, 1e-9), upper=c(Inf, 1), init, ...) {
+fstrauss.direct <- function(x, R, lower=c(1e-9, 1e-9), upper=c(Inf, 1), init, ..., edge = TRUE) {
   bbox <- if(is.list(x)) x$bbox else apply(x, 2, range)
   x <- ( if(is.list(x)) x$x else x )
   dim <- ncol(bbox)
   VR <- R^dim * ( if(dim==3) 3*pi/4 else pi )
   # reduced sample border correction
-  bbox_ero <- bbox_erode(bbox, R)
-  V <- prod(apply(bbox_ero, 2, diff))
-  # compute statistics, reduced sample border correction
-  bbdists <- bbox_distance(x, bbox)
-  inside <- which(bbdists > R)
-  outside <- which(bbdists < R)
-  N <- length(inside)
-  nlist_in <- geom(x, from=inside, to=inside, r=R)
-  nlist_2out <- geom(x, from=inside, to=outside, r=R)
-  degs_in <- sapply(nlist_in, length)
-  degs_2out <- sapply(nlist_2out, length)
-  tv <- c(N, sum(degs_in)/2 + sum(degs_2out))
+  if(edge){
+    bbox_ero <- bbox_erode(bbox, R)
+    V <- prod(apply(bbox_ero, 2, diff))
+    # compute statistics, reduced sample border correction
+    bbdists <- bbox_distance(x, bbox)
+    inside <- which(bbdists > R)
+    outside <- which(bbdists < R)
+    N <- length(inside)
+    nlist_in <- geom(x, from=inside, to=inside, r=R)
+    nlist_2out <- geom(x, from=inside, to=outside, r=R)
+    degs_in <- sapply(nlist_in, length)
+    degs_2out <- sapply(nlist_2out, length)
+    tv <- c(N, sum(degs_in)/3 + sum(degs_2out))
+  } else{
+    bbox_ero <- bbox 
+    V <- prod(apply(bbox_ero, 2, diff))
+    # compute statistics, reduced sample border correction
+    bbdists <- bbox_distance(x, bbox)
+    inside <- which(bbdists > R)
+    outside <- which(bbdists < R)
+    N <- length(inside)
+    nlist_in <- geom(x, from=inside, to=inside, r=R)
+    degs_in <- sapply(nlist_in, length)
+    tv <- c(N, sum(degs_in)/2)
+  }
   # initial values
   initial_values <- if(missing(init)){
     lambda <-  N/V
@@ -55,7 +68,7 @@ fstrauss.direct <- function(x, R, lower=c(1e-9, 1e-9), upper=c(Inf, 1), init, ..
   names(coef) <- c("beta", "gamma", "r_given")
   # log-likelihood
   lz <- approximate_strauss_constant(coef[1], coef[2], R, bbox_ero, ... )
-  ll <- tv%*%log(coef[1:2])-lz
+  ll <- sum(tv*log(coef[1:2]))-lz
   list(theta=coef, optim_out=res, logLik=ll)
 }
 

@@ -60,8 +60,8 @@ Simulate the spatial point Strauss process in 2- or 3-dimensional box
 }
 \details{
 The density of a realisation x of Strauss(beta, gamma, r), where r is the range, is
-\deqn{f(x)= alfa beta^n(x) gamma^s(x;r)}
-with scaling constant \code{alfa}, number of points \code{n(x)}, and the number of r-close pairs \code{s(x;r)}.
+\deqn{f(x)= Z^{-1} \beta^{n(x)} \gamma^{s(x;r)} }
+with normalising constant \code{Z}, number of points \code{n(x)}, and the number of r-close pairs \code{s(x;r)}.
 
 Under the condition \code{n(x)=n}, the \code{beta==1}.
 }
