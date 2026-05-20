@@ -39,13 +39,10 @@ fstrauss.direct <- function(x, R, lower=c(1e-9, 1e-9), upper=c(Inf, 1), init, ..
     bbox_ero <- bbox 
     V <- prod(apply(bbox_ero, 2, diff))
     # compute statistics, reduced sample border correction
-    bbdists <- bbox_distance(x, bbox)
-    inside <- which(bbdists > R)
-    outside <- which(bbdists < R)
-    N <- length(inside)
-    nlist_in <- geom(x, from=inside, to=inside, r=R)
-    degs_in <- sapply(nlist_in, length)
-    tv <- c(N, sum(degs_in)/2)
+    nlist <- geom(x, r=R)
+    degs <- sapply(nlist, length)
+    N <- nrow(x)
+    tv <- c(N, sum(degs)/2)
   }
   # initial values
   initial_values <- if(missing(init)){
