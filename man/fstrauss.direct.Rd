@@ -4,7 +4,15 @@
 \alias{fstrauss.direct}
 \title{Fit Strauss process to data using maximum approx. likelihood}
 \usage{
-fstrauss.direct(x, R, lower = c(1e-09, 1e-09), upper = c(Inf, 1), init, ...)
+fstrauss.direct(
+  x,
+  R,
+  lower = c(1e-09, 1e-09),
+  upper = c(Inf, 1),
+  init,
+  ...,
+  edge = TRUE
+)
 }
 \arguments{
 \item{x}{a list with elements $x:data.frame of locations (ncol 2 or 3), $bbox: matrix with columns giving window bounds}

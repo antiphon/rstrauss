@@ -34,7 +34,7 @@ fstrauss.direct <- function(x, R, lower=c(1e-9, 1e-9), upper=c(Inf, 1), init, ..
     nlist_2out <- geom(x, from=inside, to=outside, r=R)
     degs_in <- sapply(nlist_in, length)
     degs_2out <- sapply(nlist_2out, length)
-    tv <- c(N, sum(degs_in)/3 + sum(degs_2out))
+    tv <- c(N, sum(degs_in)/2 + sum(degs_2out))
   } else{
     bbox_ero <- bbox 
     V <- prod(apply(bbox_ero, 2, diff))
